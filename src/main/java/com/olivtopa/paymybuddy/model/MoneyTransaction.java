@@ -2,18 +2,23 @@ package com.olivtopa.paymybuddy.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+@Entity
 public class MoneyTransaction {
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Integer id;
 	private String emailOrigin;
 	private String emailRecipient;
 	private String description;
 	private Double amount;
 	private Date creationDate;
 	
-	public void recordTransaction() {
-		//TODO
-	}
-
+	
 	public String getEmailOrigin() {
 		return emailOrigin;
 	}

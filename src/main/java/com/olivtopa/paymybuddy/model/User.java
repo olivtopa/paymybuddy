@@ -2,25 +2,15 @@ package com.olivtopa.paymybuddy.model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+
+@Entity
 public class User {
-	
+
 	private String email;
 	private String password;
 	private Double solde;
 	private List<Contact> contact;
-	
-	public Contact addContact() {
-		
-		return null;
-	}
-	
-	public void tranfert() {
-		//TODO
-	}
-	
-	public void fund() {
-		//TODO
-	}
 
 	public String getEmail() {
 		return email;
