@@ -10,6 +10,7 @@ public class User {
 	private List<Contact> contact;
 	
 	public Contact addContact() {
+		
 		return null;
 	}
 	
