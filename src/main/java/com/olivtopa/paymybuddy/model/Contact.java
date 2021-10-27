@@ -1,12 +1,23 @@
 package com.olivtopa.paymybuddy.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "contact")
 public class Contact {
 
+	@Id
+	@Column(name = "email_origin")
 	private String emailOrigin;
+	
+	@Id
+	@Column(name= "email_contact")
 	private String emailContact;
+	
+	@Column(name="name")
 	private String name;
 
 	public String getEmailOrigin() {

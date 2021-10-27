@@ -1,16 +1,23 @@
 package com.olivtopa.paymybuddy.model;
 
-import java.util.List;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user")
 public class User {
 
+	@Id
+	@Column(name = "email")
 	private String email;
+
+	@Column(name = "password")
 	private String password;
+
+	@Column(name = "solde")
 	private Double solde;
-	private List<Contact> contact;
 
 	public String getEmail() {
 		return email;
@@ -34,14 +41,6 @@ public class User {
 
 	public void setSolde(Double solde) {
 		this.solde = solde;
-	}
-
-	public List<Contact> getContact() {
-		return contact;
-	}
-
-	public void setContact(List<Contact> contact) {
-		this.contact = contact;
 	}
 
 }
