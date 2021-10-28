@@ -1,8 +1,15 @@
 package com.olivtopa.paymybuddy.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
+
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +25,18 @@ public class User {
 
 	@Column(name = "solde")
 	private Double solde;
+
+	// OneToMany : one user can belong to several contacts
+	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	List<Contact> contacts = new ArrayList<>();
+
+	public List<Contact> getContacts() {
+		return contacts;
+	}
+
+	public void setContacts(List<Contact> contacts) {
+		this.contacts = contacts;
+	}
 
 	public String getEmail() {
 		return email;
@@ -41,6 +60,16 @@ public class User {
 
 	public void setSolde(Double solde) {
 		this.solde = solde;
+	}
+	
+	public void addContact(Contact contact) {
+		contacts.add(contact);
+		contact.setUser(this);
+	}
+	
+	public void removeContact(Contact contact) {
+		contacts.remove(contact);
+		contact.setUser(null);
 	}
 
 }

@@ -8,12 +8,16 @@ import com.olivtopa.paymybuddy.model.Contact;
 
 @Service
 public class ContactService {
-	
+
 	@Autowired
 	private ContactRepository contactRepository;
-	
-	public Iterable<Contact> getContacts(){
+
+	public Iterable<Contact> getContacts() {
 		return contactRepository.findAll();
+	}
+	
+	public Contact addContact(Contact contact) {
+		return contactRepository.save(contact);
 		
 	}
 
