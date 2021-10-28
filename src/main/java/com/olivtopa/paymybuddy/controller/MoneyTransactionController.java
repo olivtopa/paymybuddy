@@ -17,7 +17,7 @@ public class MoneyTransactionController {
 	private MoneyTransactionService moneyTransactionService;
 	private static Logger logger = LoggerFactory.getLogger(MoneyTransactionController.class);
 
-	@RequestMapping(value = "/all", method = RequestMethod.GET)
+	@RequestMapping(value = "/transactions", method = RequestMethod.GET)
 	public Iterable<MoneyTransaction> getAll() {
 		logger.info("All transaction history");
 		return moneyTransactionService.getMoneyTransactions();

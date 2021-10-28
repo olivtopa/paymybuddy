@@ -14,18 +14,12 @@ public class PaymybuddyApplication implements CommandLineRunner {
 	@Autowired
 	private MoneyTransactionService moneyTransactionService;
 
-	@Autowired
-	private MoneyTransaction moneyTransaction;
-
 	public static void main(String[] args) {
 		SpringApplication.run(PaymybuddyApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		Iterable<MoneyTransaction> moneyTransactions = moneyTransactionService.getMoneyTransactions();
-		moneyTransactions.forEach(moneyTransation -> System.out.println(moneyTransaction.getEmailOrigin()));
 
 	}
 
