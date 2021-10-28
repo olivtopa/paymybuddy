@@ -4,8 +4,9 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.olivtopa.paymybuddy.model.Contact;
+import com.olivtopa.paymybuddy.model.ContactId;
 
 @Repository
-public interface ContactRepository extends CrudRepository<Contact,String> {
+public interface ContactRepository extends CrudRepository<Contact,ContactId> {
 
 }
