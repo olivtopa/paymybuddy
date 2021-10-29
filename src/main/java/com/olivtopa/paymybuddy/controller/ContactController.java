@@ -19,7 +19,8 @@ public class ContactController {
 	
 	@PostMapping(value = "/addContact")
 	public void addContact(@RequestBody Contact newContact) {
-		
+		logger.info("Add a contact");
+		contactService.addContact(newContact);
 	}
 
 }

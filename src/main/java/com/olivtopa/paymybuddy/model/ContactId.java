@@ -3,16 +3,19 @@ package com.olivtopa.paymybuddy.model;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class ContactId implements Serializable{
-	
+public class ContactId implements Serializable {
+
 	private String emailOrigin;
 	private String emailContact;
-	
+	private static final long serialVersionUID = 1L;
+
 	public ContactId(String emailOrigin, String emailContact) {
-		
+
 		this.emailOrigin = emailOrigin;
-		this.emailContact  = emailContact;
+		this.emailContact = emailContact;
 	}
+	
+	public ContactId(){}
 
 	@Override
 	public int hashCode() {
@@ -30,7 +33,5 @@ public class ContactId implements Serializable{
 		ContactId other = (ContactId) obj;
 		return Objects.equals(emailContact, other.emailContact) && Objects.equals(emailOrigin, other.emailOrigin);
 	}
-	
-	
 
 }
