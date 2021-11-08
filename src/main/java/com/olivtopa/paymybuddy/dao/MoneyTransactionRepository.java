@@ -8,4 +8,5 @@ import com.olivtopa.paymybuddy.model.MoneyTransaction;
 @Repository
 public interface MoneyTransactionRepository extends CrudRepository<MoneyTransaction, Integer> {
 
+	Iterable<MoneyTransaction> findAllByContactEmailOrigin(String emailOrigin);
 }

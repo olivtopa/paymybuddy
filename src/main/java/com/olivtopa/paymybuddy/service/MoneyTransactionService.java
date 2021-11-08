@@ -8,13 +8,13 @@ import com.olivtopa.paymybuddy.model.MoneyTransaction;
 
 @Service
 public class MoneyTransactionService {
-	
+
 	@Autowired
 	private MoneyTransactionRepository moneyTransactionRepository;
-	
-	public Iterable<MoneyTransaction> getMoneyTransactions() {
-		
-		return moneyTransactionRepository.findAll();
+
+	public Iterable<MoneyTransaction> getMoneyTransactions(String userEmail) {
+
+		return moneyTransactionRepository.findAllByContactEmailOrigin(userEmail);
 	}
 
 }

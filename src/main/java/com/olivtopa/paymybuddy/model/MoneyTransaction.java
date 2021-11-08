@@ -5,6 +5,9 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,11 +20,11 @@ public class MoneyTransaction {
 	@Column(name = "id")
 	private Integer id;
 
-	@Column(name = "email_origin")
-	private String emailOrigin;
+	@ManyToOne
+	@JoinColumns({ @JoinColumn(name = "email_origin", referencedColumnName = "email_origin"),
+			@JoinColumn(name = "email_recipient", referencedColumnName = "email_contact") })
 
-	@Column(name = "email_recipient")
-	private String emailRecipient;
+	private Contact contact;
 
 	@Column(name = "description")
 	private String description;
@@ -32,24 +35,20 @@ public class MoneyTransaction {
 	@Column(name = "creation_date")
 	private Date creationDate;
 
-	public String getEmailOrigin() {
-		return emailOrigin;
-	}
-
-	public void setEmailOrigin(String emailOrigin) {
-		this.emailOrigin = emailOrigin;
-	}
-
-	public String getEmailRecipient() {
-		return emailRecipient;
-	}
-
-	public void setEmailRecipient(String emailRecipient) {
-		this.emailRecipient = emailRecipient;
-	}
-
 	public String getDescription() {
 		return description;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public Contact getContact() {
+		return contact;
+	}
+
+	public void setContact(Contact contact) {
+		this.contact = contact;
 	}
 
 	public void setDescription(String description) {
@@ -72,4 +71,10 @@ public class MoneyTransaction {
 		this.creationDate = creationDate;
 	}
 
+	@Override
+	public String toString() {
+		return "MoneyTransaction{" + "id=" + id + ", contact=" + contact + ", description= '" + description + '\''
+				+ ", amount=" + amount + ", creationDate=" + creationDate + '}';
+
+	}
 }
