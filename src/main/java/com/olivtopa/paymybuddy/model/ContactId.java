@@ -9,13 +9,14 @@ public class ContactId implements Serializable {
 	private String emailContact;
 	private static final long serialVersionUID = 1L;
 
+	public ContactId() {
+	}
+
 	public ContactId(String emailOrigin, String emailContact) {
 
 		this.emailOrigin = emailOrigin;
 		this.emailContact = emailContact;
 	}
-	
-	public ContactId(){}
 
 	@Override
 	public int hashCode() {

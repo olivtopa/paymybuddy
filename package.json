@@ -1,0 +1,23 @@
+{
+  "name": "paymybuddy",
+  "version": "0.1.0",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "comments": [
+    "Pour builder le front, il faut taper npm run watch"
+  ],
+  "scripts": {
+    "watch": "webpack --watch -d --output ./target/classes/static/built/bundle.js"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
+  }
+}
