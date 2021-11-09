@@ -15,10 +15,14 @@ public class ContactService {
 	public Iterable<Contact> getContacts() {
 		return contactRepository.findAll();
 	}
-	
+
 	public Contact addContact(Contact contact) {
 		return contactRepository.save(contact);
-		
+
+	}
+
+	public Iterable<Contact> getContactsByUser(String userEmail) {
+		return contactRepository.findAllByEmailOrigin(userEmail);
 	}
 
 }
