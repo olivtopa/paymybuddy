@@ -5,8 +5,8 @@ export default class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     // TODO compléter le state. Pour des exemples, regarder send_money.js par exemple
-    this.state = {
-    };
+    this.state = {email: null, password: null};
+    
   }
 
   loginUser = () => {
@@ -21,10 +21,14 @@ export default class LoginScreen extends React.Component {
     return (
         <div>
           <h1>Pay My Buddy</h1>
-          <form>
-            <input/>
+          <form action="" method="get">
+            <input type="email" placeholder="Email"/>
+            <input type="text" placeholder="Password"/>
+            <input type="checkbox" onChange={() => setCheked(!checked)}/> Remember me
+            <intput type="Login"/>
             {/* TODO ajouter le champ password, la checkbox remember me et le bouton login. Des exemples sont visibles dans la partie transaction */}
           </form>
+          
         </div>
     )
   }

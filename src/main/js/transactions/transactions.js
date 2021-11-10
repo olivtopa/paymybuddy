@@ -34,7 +34,7 @@ export default class TransactionScreen extends React.Component {
 
 		axios.get('/api/contacts/' + this.props.connectedUserEmail).then(response => {
 			this.setState({ contacts: response.data });
-		})
+		});
 	}
 
 	componentDidMount() {
