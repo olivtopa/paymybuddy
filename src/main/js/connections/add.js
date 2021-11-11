@@ -5,7 +5,7 @@ export default class AddConnectionPopup extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { emailOrigin: null, emailContact: null, connection: null };
+		this.state = {emailOrigin: null, emailContact: null, connection: null };
 	}
 
 	enterEmailOrigin = (emailOrigin) => {
@@ -25,7 +25,7 @@ export default class AddConnectionPopup extends React.Component {
 
 
 
-	addConnection = (connectionRequest) => {
+	addAConnection = (connectionRequest) => {
 		console.log(['Adding connection', connectionRequest]);
 		const entity = { emailOrigin:connectionRequest.emailOrigin, emailContact: connectionRequest.emailContact, connection: connectionRequest.connection };
 		axios.post('/addContact', entity).then(() => {

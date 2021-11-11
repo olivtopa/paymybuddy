@@ -1,5 +1,5 @@
 import React from "react";
-//import AddConnectionPopup from "./connections/add";
+//import AddConnectionPopup from "../connections/Add";
 export default class SendMoneyComponent extends React.Component {
 
 	constructor(props) {
@@ -7,6 +7,7 @@ export default class SendMoneyComponent extends React.Component {
 		this.state = {
 			selectedContact: null,
 			amount: 0
+			
 		};
 	}
 
@@ -30,6 +31,7 @@ export default class SendMoneyComponent extends React.Component {
 	}
 
 	addConnection = () => {
+		
 		// TODO afficher le composant AddConnectionPopup en overlay
 		// Ce composant doit être ajouté au render, mais en étant masqué par défaut.
 		// console.log('TODO open a popup to add a connection');
