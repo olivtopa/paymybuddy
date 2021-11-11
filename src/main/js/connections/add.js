@@ -2,9 +2,32 @@ import React from "react";
 
 // TODO
 export default class AddConnectionPopup extends React.Component {
+	
+	constructor (props) {
+		super(props);
+		this.state = {emailContact:null, connection:null};
+	}
+	
+	enterEmailContact = (emailContact) => {
+		console.log('your new email contact: '+ emailContact);
+		this.setState(prevState => ({...prevState, contactEmail: String(contactEmail)}));
+	}
+	
+	enterConnection = (connection) => {
+		console.log('your new connection: '+ connection);
+		this.setState(prevState => ({...prevState, connection: String(connection)}));
+	}
+	
+	
 
-	state = {
-		contacts: []
+	addConnection = (connectionRequest) => {
+		console.log(['Adding connection', connectionRequest]);
+		const entity = {emailContact:connectionRequest.emailContact, connection:connectionRequest.connection};
+		axios.post('/addContact', entity).then(() => {
+			console.log('connection added');
+		}
+		
+		)
 	}
 
 
