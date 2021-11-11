@@ -37,7 +37,8 @@ render() {
 		<div>
 			<h1>Add a new connection</h1>
 			<form>
-				<input type="email" placeholder="Email du contact" />
+				<input type="text" onInput={(e) => this.enterEmailContact(e.target.value)}/>
+				<input type="text" onInput={(e) => this.enterConnection(e.target.value)}/>
 				<button>Submit</button>
 			</form>
 		</div>
