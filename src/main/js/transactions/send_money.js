@@ -1,5 +1,5 @@
 import React from "react";
-//import AddConnectionPopup from "../connections/add";
+
 export default class SendMoneyComponent extends React.Component {
 
 	constructor(props) {

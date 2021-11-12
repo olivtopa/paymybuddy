@@ -1,5 +1,6 @@
 import React from "react";
 import SendMoneyComponent from "./send_money";
+import AddConnectionPopup from "../connections/add";
 import axios from "axios";
 
 export default class TransactionScreen extends React.Component {
@@ -48,6 +49,7 @@ export default class TransactionScreen extends React.Component {
 		);
 		return (
 			<div>
+				<AddConnectionPopup/>
 				<SendMoneyComponent contacts={this.state.contacts} transferMoney={this.transferMoney} />
 				<table>
 					<tbody>
