@@ -7,26 +7,25 @@ export default class LoginScreen extends React.Component {
 		this.state = { email: null, password: null, rememberMe: null };
 
 	}
+	enterEmail = (email) => {
+		console.log('your email: ' + email);
+		this.setState(prevState => ({ ...prevState, String: String(email) }));
+	}
+
+	enterPassword = (password) => {
+		this.setState(prevState => ({ ...prevState, amount: String(password) }));
+	}
 
 	loginUser = (loginRequest) => {
 		// TODO Cette méthode doit être liée au click bouton (regarder send_money.js pour des exemples de liaison)
 		// récupérer du state email, password et remember me, puis avec ça,
 		//  appeler le back-end (comme pour TransactionScreen.transferMoney)
 		// En cas de réussite, appeler la méthode onLoginOk() du parent avec l'email de l'utilisateur.
-		console.log(['login',loginRequest]);
-		const loginEntity = {email:loginRequest.email, password:loginRequest.password};
+		console.log(['login', loginRequest]);
+		const loginEntity = this.state;
 		axios.post('')
-
-		enterEmail = (email) => {
-			console.log('your email: ' + email);
-			this.setState(prevState => ({ ...prevState, String: String(email) }));
-		}
-
-		enterPassword = (password) => {
-			this.setState(prevState => ({ ...prevState, amount: String(password) }));
-		}
-
 	}
+
 
 	render() {
 
