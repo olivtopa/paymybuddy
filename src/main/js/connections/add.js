@@ -5,14 +5,14 @@ export default class AddConnectionPopup extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {emailOrigin: null, emailContact: null, connection: null };
+		this.state = { emailOrigin: null, emailContact: null, connection: null };
 	}
 
 	enterEmailOrigin = (emailOrigin) => {
 		console.log('your new email: ' + emailOrigin);
 		this.setState(prevState => ({ ...prevState, emailOrigine: String(emailOrigin) }));
 	}
-	
+
 	enterEmailContact = (emailContact) => {
 		console.log('your new email contact: ' + emailContact);
 		this.setState(prevState => ({ ...prevState, emailContact: String(emailContact) }));
@@ -27,7 +27,7 @@ export default class AddConnectionPopup extends React.Component {
 
 	addAConnection = (connectionRequest) => {
 		console.log(['Adding connection', connectionRequest]);
-		const entity = { emailOrigin:connectionRequest.emailOrigin, emailContact: connectionRequest.emailContact, connection: connectionRequest.connection };
+		const entity = { emailOrigin: connectionRequest.emailOrigin, emailContact: connectionRequest.emailContact, connection: connectionRequest.connection };
 		axios.post('/addContact', entity).then(() => {
 			console.log('connection added');
 		}
@@ -38,16 +38,20 @@ export default class AddConnectionPopup extends React.Component {
 
 	render() {
 
-		return (
-			<div>
-				<h1>Add a new connection</h1>
-				<form>
-					<input type="text" onInput={(e) => this.enterEmailOrigin(e.target.value)} />
-					<input type="text" onInput={(e) => this.enterEmailContact(e.target.value)} />
-					<input type="text" onInput={(e) => this.enterConnection(e.target.value)} />
-					<button>Submit</button>
-				</form>
-			</div>
-		)
+		if (this.props.visible) {
+			return (
+				<div>
+					<h1>Add a new connection</h1>
+					<form>
+						<input type="text" onInput={(e) => this.enterEmailOrigin(e.target.value)} />
+						<input type="text" onInput={(e) => this.enterEmailContact(e.target.value)} />
+						<input type="text" onInput={(e) => this.enterConnection(e.target.value)} />
+						<button>Submit</button>
+					</form>
+				</div>
+			)
+		} else {
+			return (<div />);
+		}
 	}
 }

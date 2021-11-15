@@ -24,7 +24,7 @@ public class User {
 	private String password;
 
 	@Column(name = "solde")
-	private Double solde;
+	private double solde;
 
 	// OneToMany : one user can belong to several contacts
 	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
