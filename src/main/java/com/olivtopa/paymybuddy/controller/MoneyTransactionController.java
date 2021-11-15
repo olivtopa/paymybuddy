@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.olivtopa.paymybuddy.model.MoneyTransaction;
 import com.olivtopa.paymybuddy.service.MoneyTransactionService;
+import com.olivtopa.paymybuddy.service.TransactionService;
 
 @RestController
 public class MoneyTransactionController {
 
 	@Autowired
 	private MoneyTransactionService moneyTransactionService;
+	
+	@Autowired
+	TransactionService transactionService;
+	
 	private static Logger logger = LoggerFactory.getLogger(MoneyTransactionController.class);
 
 	@GetMapping(value = "/api/transactions/{userEmail}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -30,5 +35,7 @@ public class MoneyTransactionController {
 	@PostMapping(value = "/api/transactions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void create(@RequestBody MoneyTransaction transaction) {
 		logger.info("Transaction {}", transaction);
+		transactionService.transaction(null, null, 0);
+		
 	}
 }
