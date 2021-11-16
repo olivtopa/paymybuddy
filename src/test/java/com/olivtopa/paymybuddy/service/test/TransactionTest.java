@@ -45,7 +45,7 @@ public class TransactionTest {
 		
 		User userContact = new User();
 		userContact.setEmail("email2@gmail.com");
-		userContact.setSolde(0);
+		userContact.setSolde(12.00);
 		List<User> userContacts = new ArrayList<>();
 		userContacts.add(userContact);
 		
@@ -53,7 +53,7 @@ public class TransactionTest {
 		
 		
 		Mockito.when(userService.getUserByEmail(ArgumentMatchers.anyString())).thenReturn(userOrigin);
-		//Mockito.when(contactService.getContactsByUser(ArgumentMatchers.anyString())).thenReturn(userContact);
+		//Mockito.when(contactService.getContactsByUser(ArgumentMatchers.anyString())).thenReturn(userContacts);
 
 		// When
 		transactionService.transaction(transaction);

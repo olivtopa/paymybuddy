@@ -7,24 +7,21 @@ import com.olivtopa.paymybuddy.model.Transaction;
 
 @Service
 public class TransactionService {
-	
-	@Autowired UserService userService;
+
+	@Autowired
+	UserService userService;
 
 	public void transaction(Transaction transaction) {
 
-		String emailOrigin = transaction.getEmailOrigin();
-		String emailContact = transaction.getEmailContact();
-		
-		double debtorBalance = userService.getUserByEmail(emailOrigin).getSolde();
-		double creditBalance = userService.getUserByEmail(emailContact).getSolde();
-		
-		if (transaction.getAmount() < debtorBalance) {
-			
-			debtorBalance =-transaction.getAmount();
-			creditBalance =+ transaction.getAmount();
-		}else
-			System.out.println("Solde insuffisant");
-		
+		double soldeDuDebteur = userService.getUserByEmail(transaction.getEmailOrigin()).getSolde();
+		double soldeDuDestinataire = userService.getUserByEmail(transaction.getEmailContact()).getSolde();
+
+		if (transaction.getAmount() < soldeDuDebteur) {
+
+			soldeDuDebteur -=transaction.getAmount();
+			soldeDuDestinataire +=transaction.getAmount();
+		} else 
+			System.out.println("Solde insuffisant"); // TODO replace by an exception
 
 	}
 }
