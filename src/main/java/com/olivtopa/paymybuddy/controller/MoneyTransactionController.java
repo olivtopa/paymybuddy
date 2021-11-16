@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olivtopa.paymybuddy.model.MoneyTransaction;
+import com.olivtopa.paymybuddy.model.Transaction;
 import com.olivtopa.paymybuddy.service.MoneyTransactionService;
 import com.olivtopa.paymybuddy.service.TransactionService;
 
@@ -33,9 +34,9 @@ public class MoneyTransactionController {
 	}
 
 	@PostMapping(value = "/api/transactions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void create(@RequestBody MoneyTransaction transaction) {
+	public void create(@RequestBody Transaction transaction) {
 		logger.info("Transaction {}", transaction);
-		transactionService.transaction(null, null, 0);
+		transactionService.transaction(transaction);
 		
 	}
 }

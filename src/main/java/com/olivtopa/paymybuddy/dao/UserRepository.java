@@ -7,5 +7,7 @@ import com.olivtopa.paymybuddy.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User,String> {
+	
+	User findByEmailContact(String emailContact);
 
 }

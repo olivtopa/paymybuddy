@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import com.olivtopa.paymybuddy.model.Transaction;
 import com.olivtopa.paymybuddy.model.User;
 import com.olivtopa.paymybuddy.service.TransactionService;
 
@@ -19,18 +20,22 @@ public class TransactionTest {
 	public void transactionTest() {
 
 		// given
-		User origin = new User();
-		origin.setEmail("email1@gmail.com");
-		origin.setSolde(150.00);
-		User contact = new User();
-		contact.setEmail("email2@gmail.com");
-		contact.setSolde(10.00);
+		Transaction transaction = new Transaction();
+		transaction.setEmailOrigin("email1@gmail.com");
+		transaction.setEmailContact("email2@gmail.com");
+		transaction.setAmount(100);
+		
+		User userOrigin = new User();
+		userOrigin.setSolde(10.00);
+		
+		User userContact = new User();
+		userContact.setSolde(0);
 
 		// When
-		transactionService.transaction("email1@gmail.com", "email2@gmail.com", 100.00);
+		transactionService.transaction(transaction);
 
 		// Then
-		Assertions.assertThat(contact.getSolde()).isEqualTo(150);
+		Assertions.assertThat(userContact.getSolde()).isEqualTo(0);
 
 	}
 

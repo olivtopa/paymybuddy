@@ -1,23 +1,30 @@
 package com.olivtopa.paymybuddy.service;
 
-import com.olivtopa.paymybuddy.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.olivtopa.paymybuddy.model.Transaction;
+
+@Service
 public class TransactionService {
+	
+	@Autowired UserService userService;
 
-	public void transaction(String emailOrigin, String emailContact, double amount) {
+	public void transaction(Transaction transaction) {
 
-		User origin = new User();
-		User contact = new User();
-
-		origin.setEmail(emailOrigin);
-		// if ((origin.getSolde() - amount) > 0) {
-		origin.setSolde(origin.getSolde() - amount);
-
-		contact.setEmail(emailContact);
-		contact.setSolde(contact.getSolde() + amount);
-
-		// } else
-		// System.out.println("Solde insufisant");
+		String emailOrigin = transaction.getEmailOrigin();
+		String emailContact = transaction.getEmailContact();
+		
+		double debtorBalance = userService.getUserByEmail(emailOrigin).getSolde();
+		double creditBalance = userService.getUserByEmail(emailContact).getSolde();
+		
+		if (transaction.getAmount() < debtorBalance) {
+			
+			debtorBalance =-transaction.getAmount();
+			creditBalance =+ transaction.getAmount();
+		}else
+			System.out.println("Solde insuffisant");
+		
 
 	}
 }
