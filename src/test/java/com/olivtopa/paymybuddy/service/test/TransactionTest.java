@@ -37,29 +37,29 @@ public class TransactionTest {
 		Transaction transaction = new Transaction();
 		transaction.setEmailOrigin("email1@gmail.com");
 		transaction.setEmailContact("email2@gmail.com");
-		transaction.setAmount(100.00);
+		transaction.setAmount(200.00);
 		
 		User userOrigin = new User();
 		userOrigin.setEmail("email1@gmail.com");
-		userOrigin.setSolde(200.00);
+		userOrigin.setSolde(201.00);
 		
 		User userContact = new User();
 		userContact.setEmail("email2@gmail.com");
 		userContact.setSolde(12.00);
-		List<User> userContacts = new ArrayList<>();
-		userContacts.add(userContact);
 		
 		
 		
 		
-		Mockito.when(userService.getUserByEmail(ArgumentMatchers.anyString())).thenReturn(userOrigin);
-		//Mockito.when(contactService.getContactsByUser(ArgumentMatchers.anyString())).thenReturn(userContacts);
+		
+		Mockito.when(userService.getUserByEmail("email1@gmail.com")).thenReturn(userOrigin);
+		Mockito.when(userService.getUserByEmail("email2@gmail.com")).thenReturn(userContact);
 
 		// When
 		transactionService.transaction(transaction);
 
 		// Then
-		Assertions.assertThat(userContact.getSolde()).isEqualTo(100);
+		Assertions.assertThat(userContact.getSolde()).isEqualTo(212.00);
+		Assertions.assertThat(userOrigin.getSolde()).isEqualTo(1.00);
 
 	}
 
