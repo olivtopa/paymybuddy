@@ -16,9 +16,6 @@ public class TransactionService {
 	User user;
 
 	public void transaction(Transaction transaction) {
-		
-		//User debtor = new User();
-		//User recipient = new User();
 
 		double soldeDuDebtor = userService.getUserByEmail(transaction.getEmailOrigin()).getSolde();
 		double soldeDuDestinataire = userService.getUserByEmail(transaction.getEmailContact()).getSolde();
