@@ -12,11 +12,13 @@ class App extends React.Component {
 		super(props);
 		// TODO quand l'écran de listing des transactions sera ok, il faudra supprimer la valeur en dur pour travailler sur la partie login
 		this.state = {
-			connectedUserEmail: 'email1@gmail.com'
+			connectedUserEmail: 'email1@gmail.com',
+
 		}
 	}
 
 	login = (connectedUserEmail) => {
+		this.setState(prevState => ({ ...prevState, connectedUserEmail: String(connectedUserEmail) }));
 		// TODO ici on enregistre dans le state le connectedUserEmail
 	}
 

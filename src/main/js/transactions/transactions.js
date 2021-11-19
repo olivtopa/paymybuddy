@@ -9,8 +9,7 @@ export default class TransactionScreen extends React.Component {
 		super(props);
 		this.state = {
 			transactions: [],
-			contacts: [],
-			visible:false
+			contacts: []
 		};
 	}
 

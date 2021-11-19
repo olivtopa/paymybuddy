@@ -12,7 +12,7 @@ public class TransactionService {
 	@Autowired
 	UserService userService;
 
-	@Autowired
+	
 	User user;
 
 	public void transaction(Transaction transaction) {

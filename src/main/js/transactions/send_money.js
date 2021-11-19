@@ -1,4 +1,5 @@
 import React from "react";
+import AddConnectionPopup from "../connections/add";
 
 export default class SendMoneyComponent extends React.Component {
 
@@ -6,7 +7,8 @@ export default class SendMoneyComponent extends React.Component {
 		super(props);
 		this.state = {
 			selectedContact: null,
-			amount: 0
+			amount: 0,
+			showAddConnectionPopup:false,
 			
 		};
 	}
@@ -31,7 +33,8 @@ export default class SendMoneyComponent extends React.Component {
 	}
 
 	addConnection = () => {
-		
+		this.setState(prevState => ({ showAddConnectionPopup: !prevState.showAddConnectionPopup}));
+
 		// TODO afficher le composant AddConnectionPopup en overlay
 		// Ce composant doit être ajouté au render, mais en étant masqué par défaut.
 		// console.log('TODO open a popup to add a connection');
@@ -44,6 +47,7 @@ export default class SendMoneyComponent extends React.Component {
 
 		return (
 			<div>
+			<AddConnectionPopup visible={this.state.showAddConnectionPopup}/>
 				<div style={{ display: 'flex' }}>
 					<h5 className="card-title">Send Money</h5>
 					<button className="btn btn-primary" type="button" onClick={this.addConnection}>Add Connection</button>

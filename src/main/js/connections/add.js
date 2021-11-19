@@ -1,11 +1,10 @@
 import React from "react";
 
-// TODO
 export default class AddConnectionPopup extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { emailOrigin: null, emailContact: null, connection: null };
+		this.state = {emailOrigin: null, emailContact: null, connection: null,visible:false};
 	}
 
 	enterEmailOrigin = (emailOrigin) => {
