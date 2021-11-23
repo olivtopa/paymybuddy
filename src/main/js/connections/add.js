@@ -1,15 +1,11 @@
 import React from "react";
+import axios from "axios";
 
 export default class AddConnectionPopup extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {emailOrigin: null, emailContact: null, connection: null,visible:false};
-	}
-
-	enterEmailOrigin = (emailOrigin) => {
-		console.log('your new email: ' + emailOrigin);
-		this.setState(prevState => ({ ...prevState, emailOrigine: String(emailOrigin) }));
+		this.state = { emailContact: null, connection: null, };
 	}
 
 	enterEmailContact = (emailContact) => {
@@ -22,16 +18,16 @@ export default class AddConnectionPopup extends React.Component {
 		this.setState(prevState => ({ ...prevState, connection: String(connection) }));
 	}
 
+	hideAddConnection = () => {
+		this.props.hideAddConnection();
+	}
 
-
-	addAConnection = (connectionRequest) => {
-		console.log(['Adding connection', connectionRequest]);
-		const entity = { emailOrigin: connectionRequest.emailOrigin, emailContact: connectionRequest.emailContact, connection: connectionRequest.connection };
-		axios.post('/addContact', entity).then(() => {
-			console.log('connection added');
-		}
-
-		)
+	addAConnection = () => {
+		console.log(['Adding connection', this.state]);
+		const entity = { emailOrigin: this.props.emailOrigin, emailContact: this.state.emailContact, name: this.state.connection };
+		axios.post('api/contacts', entity).then(() => {
+			this.hideAddConnection();
+		});
 	}
 
 
@@ -42,10 +38,10 @@ export default class AddConnectionPopup extends React.Component {
 				<div>
 					<h1>Add a new connection</h1>
 					<form>
-						<input type="text" onInput={(e) => this.enterEmailOrigin(e.target.value)} />
-						<input type="text" onInput={(e) => this.enterEmailContact(e.target.value)} />
-						<input type="text" onInput={(e) => this.enterConnection(e.target.value)} />
-						<button>Submit</button>
+						<input type="text" placeholder="Contact's Email "onInput={(e) => this.enterEmailContact(e.target.value)} />
+						<input type="text" placeholder= "Connection's description" onInput={(e) => this.enterConnection(e.target.value)} />
+						<button type="button" onClick={this.addAConnection} className="btn btn primary">Submit</button>
+						<button type="button" onClick={this.hideAddConnection}>Hide</button>
 					</form>
 				</div>
 			)

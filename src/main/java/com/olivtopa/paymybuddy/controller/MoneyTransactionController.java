@@ -36,7 +36,7 @@ public class MoneyTransactionController {
 	@PostMapping(value = "/api/transactions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void create(@RequestBody Transaction transaction) {
 		logger.info("Transaction {}", transaction);
-		transactionService.transaction(transaction);
+		transactionService.transferMoney(transaction);
 		
 	}
 }

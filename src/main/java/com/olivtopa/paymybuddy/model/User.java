@@ -64,12 +64,12 @@ public class User {
 	
 	public void addContact(Contact contact) {
 		contacts.add(contact);
-		contact.setUser(this);
 	}
+		
 	
 	public void removeContact(Contact contact) {
 		contacts.remove(contact);
-		contact.setUser(null);
+		
 	}
 
 }

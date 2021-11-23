@@ -11,23 +11,23 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.olivtopa.paymybuddy.model.Transaction;
 import com.olivtopa.paymybuddy.model.User;
-import com.olivtopa.paymybuddy.service.ContactService;
+import com.olivtopa.paymybuddy.service.MoneyTransactionService;
 import com.olivtopa.paymybuddy.service.TransactionService;
 import com.olivtopa.paymybuddy.service.UserService;
 
 @ExtendWith(MockitoExtension.class)
-public class TransactionTest {
+public class TransactionServiceTest {
 
 	@InjectMocks
 	private TransactionService transactionService;
 
 	@Mock
-	UserService userService;
+	private UserService userService;
 	@Mock
-	ContactService contactService;
+	private MoneyTransactionService moneyTransactionService;
 
 	@Test
-	public void transactionTest() {
+	public void transferMoney() {
 
 		// given
 		Transaction transaction = new Transaction();
@@ -47,7 +47,7 @@ public class TransactionTest {
 		Mockito.when(userService.getUserByEmail("email2@gmail.com")).thenReturn(userContact);
 
 		// When
-		transactionService.transaction(transaction);
+		transactionService.transferMoney(transaction);
 
 		// Then
 		Assertions.assertThat(userContact.getSolde()).isEqualTo(212.00);

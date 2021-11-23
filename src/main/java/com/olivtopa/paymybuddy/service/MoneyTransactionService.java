@@ -17,4 +17,9 @@ public class MoneyTransactionService {
 		return moneyTransactionRepository.findAllByContactEmailOrigin(userEmail);
 	}
 
+	public void create(MoneyTransaction moneyTransaction) {
+		moneyTransactionRepository.save(moneyTransaction);
+		
+	}
+
 }

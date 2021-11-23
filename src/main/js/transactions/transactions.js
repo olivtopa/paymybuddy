@@ -9,13 +9,19 @@ export default class TransactionScreen extends React.Component {
 		super(props);
 		this.state = {
 			transactions: [],
-			contacts: []
+			contacts: [],
+			visible: false
 		};
 	}
 
 	transferMoney = (transactionRequest) => {
 		console.log(['Transferring money ', transactionRequest]);
-		const entity = { contact: transactionRequest.selectedContact, description: transactionRequest.description, amount: transactionRequest.amount };
+		const entity = {
+			emailOrigin: transactionRequest.selectedContact.emailOrigin,
+			emailContact:transactionRequest.selectedContact.emailContact,
+			description: transactionRequest.description,
+			amount: transactionRequest.amount
+		};
 		axios.post('/api/transactions', entity).then(() => {
 			console.log('Money transferred');
 			// Rafraichissement des données
@@ -40,31 +46,44 @@ export default class TransactionScreen extends React.Component {
 
 	componentDidMount() {
 		this.fetchingAllUserData();
-	}
+		}
 
-	render() {
-		console.log('Rendering transactions screen');
-		const transactions = this.state.transactions.map(transaction =>
-			<Transaction key={transaction.id} transaction={transaction} />
-		);
-		return (
-			<div>
-				<AddConnectionPopup/>
-				<SendMoneyComponent contacts={this.state.contacts} transferMoney={this.transferMoney} />
-				<table>
-					<tbody>
-						<tr>
-							<th>Connections</th>
-							<th>Description</th>
-							<th>Amount</th>
-						</tr>
-						{transactions}
-					</tbody>
-				</table>
-			</div>
-		)
+		displayAddConnection = () => {
+			this.setState({ visible: true });
+		}
+
+		hideAddConnection = () => {
+			this.setState({ visible: false });
+			this.fetchingAllUserData();
+		}
+
+		render() {
+			console.log('Rendering transactions screen');
+			const transactions = this.state.transactions.map(transaction =>
+				<Transaction key={transaction.id} transaction={transaction} />
+			);
+			return (
+				<div>
+					<AddConnectionPopup visible={this.state.visible}
+						hideAddConnection={this.hideAddConnection}
+						emailOrigin={this.props.connectedUserEmail} />
+					<SendMoneyComponent contacts={this.state.contacts}
+						transferMoney={this.transferMoney}
+						displayConnection={this.displayAddConnection} />
+					<table>
+						<tbody>
+							<tr>
+								<th>Connections</th>
+								<th>Description</th>
+								<th>Amount</th>
+							</tr>
+							{transactions}
+						</tbody>
+					</table>
+				</div>
+			)
+		}
 	}
-}
 
 class Transaction extends React.Component {
 

@@ -5,6 +5,15 @@ public class Transaction {
 	private String emailOrigin;
 	private String emailContact;
 	private double Amount;
+	private String description;
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 	public String getEmailOrigin() {
 		return emailOrigin;
@@ -33,7 +42,7 @@ public class Transaction {
 	@Override
 	public String toString() {
 		return "Transaction [emailOrigin=" + emailOrigin + ", emailContact=" + emailContact + ", Amount=" + Amount
-				+ "]";
+				+ ", description=" + description + "]";
 	}
 
 }

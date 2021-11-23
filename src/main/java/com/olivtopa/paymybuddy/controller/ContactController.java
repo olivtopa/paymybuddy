@@ -20,9 +20,9 @@ public class ContactController {
 	private ContactService contactService;
 	private static Logger logger = LoggerFactory.getLogger(ContactController.class);
 	
-	@PostMapping(value = "/addContact")
+	@PostMapping(value = "/api/contacts")
 	public void addContact(@RequestBody Contact newContact) {
-		logger.info("Add a contact");
+		logger.info("Add a contact {}",newContact);
 		contactService.addContact(newContact);
 	}
 	

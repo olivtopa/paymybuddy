@@ -2,33 +2,54 @@ package com.olivtopa.paymybuddy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.olivtopa.paymybuddy.exception.NotEnoughMoneyException;
+import com.olivtopa.paymybuddy.model.Contact;
+import com.olivtopa.paymybuddy.model.MoneyTransaction;
 import com.olivtopa.paymybuddy.model.Transaction;
 import com.olivtopa.paymybuddy.model.User;
 
 @Service
 public class TransactionService {
 
-	@Autowired
-	UserService userService;
+  @Autowired
+  private UserService userService;
 
-	
-	User user;
+  @Autowired
+  private MoneyTransactionService moneyTransactionService;
 
-	public void transaction(Transaction transaction) {
+  @Transactional
+  public void transferMoney(Transaction transaction) {
 
-		double soldeDuDebtor = userService.getUserByEmail(transaction.getEmailOrigin()).getSolde();
-		double soldeDuDestinataire = userService.getUserByEmail(transaction.getEmailContact()).getSolde();
+    User origin = userService.getUserByEmail(transaction.getEmailOrigin());
+    User contact = userService.getUserByEmail(transaction.getEmailContact());
 
-		if (transaction.getAmount() < soldeDuDebtor) {
+    double soldeDuDebtor = origin.getSolde();
+    double soldeDuDestinataire = contact.getSolde();
 
-			soldeDuDebtor -= transaction.getAmount();
-			soldeDuDestinataire += transaction.getAmount();
+    if (transaction.getAmount() <= soldeDuDebtor) {
 
-			userService.getUserByEmail(transaction.getEmailOrigin()).setSolde(soldeDuDebtor);
-			userService.getUserByEmail(transaction.getEmailContact()).setSolde(soldeDuDestinataire);
-		} else
-			System.out.println("Solde insuffisant"); // TODO replace by an exception
+      soldeDuDebtor -= transaction.getAmount();
+      soldeDuDestinataire += transaction.getAmount();
 
-	}
+      origin.setSolde(soldeDuDebtor);
+      contact.setSolde(soldeDuDestinataire);
+
+      userService.save(origin);
+      userService.save(contact);
+
+      MoneyTransaction moneyTransaction = new MoneyTransaction();
+      Contact contact1 = new Contact();
+      contact1.setEmailOrigin(origin.getEmail());
+      contact1.setEmailContact(contact.getEmail());
+      moneyTransaction.setContact(contact1);
+      moneyTransaction.setAmount(transaction.getAmount());
+      moneyTransaction.setDescription(transaction.getDescription());
+      moneyTransactionService.create(moneyTransaction);
+
+    } else {
+      //throw new NotEnoughMoneyException("Solde insuffisant");
+    }
+  }
 }

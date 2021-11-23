@@ -9,11 +9,11 @@ export default class LoginScreen extends React.Component {
 	}
 	enterEmail = (email) => {
 		console.log('your email: ' + email);
-		this.setState(prevState => ({ ...prevState, String: String(email) }));
+		this.setState(prevState => ({ ...prevState, email: String(email) }));
 	}
 
 	enterPassword = (password) => {
-		this.setState(prevState => ({ ...prevState, amount: String(password) }));
+		this.setState(prevState => ({ ...prevState, password: String(password) }));
 	}
 
 	loginUser = (loginRequest) => {
@@ -23,7 +23,9 @@ export default class LoginScreen extends React.Component {
 		// En cas de réussite, appeler la méthode onLoginOk() du parent avec l'email de l'utilisateur.
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
-		axios.post('')
+		axios.post('/api/user/' + loginEntity).then(()=> {console.log('connected');
+		this.props.onLoginOk();
+		});
 	}
 
 
