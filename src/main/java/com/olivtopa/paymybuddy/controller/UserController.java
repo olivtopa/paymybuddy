@@ -31,9 +31,9 @@ public class UserController {
 	}
 	
 	@PostMapping(value= "/api/users")
-	public void addUser(@RequestBody User user) {
-		logger.info("user connected {} : ",user);
-		loginService.loginControle(user.getEmail(), user.getPassword());
+	public void addUser(@RequestBody String email) {
+		logger.info("user connected {} : ",email);
+		loginService.loginControle(email);
 	}
 	
 }
