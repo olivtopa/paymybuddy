@@ -14,7 +14,7 @@ class App extends React.Component {
 		const storedConnectedUserEmail = localStorage.getItem('connectedUserEmail');
 		// TODO quand l'écran de listing des transactions sera ok, il faudra supprimer la valeur en dur pour travailler sur la partie login
 		this.state = {
-			connectedUserEmail: 'email1@gmail.com',
+			connectedUserEmail: null
 
 		}
 	}

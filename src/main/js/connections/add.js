@@ -36,10 +36,10 @@ export default class AddConnectionPopup extends React.Component {
 		if (this.props.visible) {
 			return (
 				<div>
-					<h1>Add a new connection</h1>
+					<h3>Add a new connection</h3>
 					<form>
 						<input type="text" placeholder="Contact's Email "onInput={(e) => this.enterEmailContact(e.target.value)} />
-						<input type="text" placeholder= "Connection's description" onInput={(e) => this.enterConnection(e.target.value)} />
+						<input type="text" placeholder= "Name" onInput={(e) => this.enterConnection(e.target.value)} />
 						<button type="button" onClick={this.addAConnection} className="btn btn primary">Submit</button>
 						<button type="button" onClick={this.hideAddConnection}>Hide</button>
 					</form>

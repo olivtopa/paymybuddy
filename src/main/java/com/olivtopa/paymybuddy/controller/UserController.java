@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olivtopa.paymybuddy.model.User;
+import com.olivtopa.paymybuddy.service.LoginService;
 import com.olivtopa.paymybuddy.service.UserService;
 
 @RestController
@@ -17,6 +20,8 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Autowired LoginService loginService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@GetMapping(value= "/api/user/{email}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,4 +29,11 @@ public class UserController {
 		logger.info("user {} :", email);
 		return userService.getUserByEmail(email);
 	}
+	
+	@PostMapping(value= "/api/users")
+	public void addUser(@RequestBody User user) {
+		logger.info("user connected {} : ",user);
+		loginService.loginControle(user.getEmail(), user.getPassword());
+	}
+	
 }
