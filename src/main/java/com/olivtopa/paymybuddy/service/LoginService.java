@@ -11,14 +11,14 @@ public class LoginService {
 	@Autowired
 	private UserService userService;
 
-	public User loginControle(String email) {
+	public String loginControle(String email) {
 
 		User user = userService.getUserByEmail(email);
 		String password = user.getPassword();
 
 		if ((userService.getUserByEmail(email) != null) && (user.getPassword().equals(password))) {
 		}
-		return user;
+		return email;
 
 		//throw new LoginException();
 	}
