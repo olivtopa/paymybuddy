@@ -5,11 +5,13 @@ public class NotEnoughMoneyException extends Exception {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 7497667622540951627L;
 
-	public NotEnoughMoneyException(String message) {
-		// TODO Auto-generated constructor stub
+	public NotEnoughMoneyException() {
+		super();
 	}
 
-	
+	public NotEnoughMoneyException(String message) {
+		super(message);
+	}
 }

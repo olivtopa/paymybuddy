@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.olivtopa.paymybuddy.exception.NotEnoughMoneyException;
 import com.olivtopa.paymybuddy.model.MoneyTransaction;
 import com.olivtopa.paymybuddy.model.Transaction;
 import com.olivtopa.paymybuddy.service.MoneyTransactionService;
@@ -34,7 +35,7 @@ public class MoneyTransactionController {
 	}
 
 	@PostMapping(value = "/api/transactions", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void create(@RequestBody Transaction transaction) {
+	public void create(@RequestBody Transaction transaction) throws NotEnoughMoneyException {
 		logger.info("Transaction {}", transaction);
 		transactionService.transferMoney(transaction);
 		

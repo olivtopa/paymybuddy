@@ -17,7 +17,7 @@ public class LoginService {
 		User user = userRepository.findByEmail(email);
 
 		if (user == null) {
-			throw new LoginException("email not found !");
+			throw new LoginException("email not found");
 		}
 		String password = user.getPassword();
 

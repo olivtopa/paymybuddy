@@ -20,7 +20,7 @@ public class TransactionService {
 	private MoneyTransactionService moneyTransactionService;
 
 	@Transactional
-	public void transferMoney(Transaction transaction) {
+	public void transferMoney(Transaction transaction) throws NotEnoughMoneyException {
 
 		User origin = userService.getUserByEmail(transaction.getEmailOrigin());
 		User contact = userService.getUserByEmail(transaction.getEmailContact());
@@ -49,7 +49,7 @@ public class TransactionService {
 			moneyTransactionService.create(moneyTransaction);
 
 		} else {
-			//throw new NotEnoughMoneyException("Solde insuffisant");
+			throw new NotEnoughMoneyException("Solde insuffisant");
 		}
 	}
 }
