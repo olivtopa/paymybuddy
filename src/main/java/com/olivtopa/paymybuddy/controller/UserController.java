@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.olivtopa.paymybuddy.exception.LoginException;
 import com.olivtopa.paymybuddy.model.User;
 import com.olivtopa.paymybuddy.service.LoginService;
 import com.olivtopa.paymybuddy.service.UserService;
@@ -30,9 +31,9 @@ public class UserController {
 		return userService.getUserByEmail(email);
 	}
 	
-	@PostMapping(value= "/api/users")
-	public void addUser(@RequestBody String email) {
-		logger.info("user connected {} : ",email);
+	@PostMapping(value= "/api/login")
+	public void addUser(@RequestBody String email) throws LoginException {
+		logger.info("connexion {} : ",email);
 		loginService.loginControle(email);
 	}
 	

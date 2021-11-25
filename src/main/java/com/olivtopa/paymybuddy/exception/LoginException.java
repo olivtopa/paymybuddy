@@ -1,7 +1,12 @@
 package com.olivtopa.paymybuddy.exception;
 
 public class LoginException extends Exception {
-	
-	//TODO
 
+	public LoginException() {
+		super();
+	}
+	
+	public LoginException(String message) {
+		super(message);
+	}
 }
