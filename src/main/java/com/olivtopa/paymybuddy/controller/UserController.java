@@ -31,10 +31,10 @@ public class UserController {
 		return userService.getUserByEmail(email);
 	}
 	
-	@PostMapping(value= "/api/login")
-	public void addUser(@RequestBody String email) throws LoginException {
-		logger.info("connexion {} : ",email);
-		loginService.loginControle(email);
+	@PostMapping(value= "/api/login", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void addUser(@RequestBody User user) throws LoginException {
+		logger.info("connexion {} : ",user.getEmail());
+		loginService.loginControle(user);
 	}
 	
 }

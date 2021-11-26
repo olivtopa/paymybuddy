@@ -32,7 +32,7 @@ public class LoginServiceTest {
 		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(user);
 
 		// When
-		String email = loginService.loginControle("email1@gmail.com");
+		String email = loginService.loginControle(user);
 
 		// Then
 		Assertions.assertThat(email).isEqualTo("email1@gmail.com");
@@ -47,10 +47,13 @@ public class LoginServiceTest {
 		user.setEmail("email1@gmail.com");
 		user.setPassword("pass1");
 		
-				
+		User unKnownUser = new User();
+		unKnownUser.setEmail("email2@gmail.com");
+		unKnownUser.setPassword("pass2");
+
 		// When + Then
-		Assertions.assertThatThrownBy(() -> loginService.loginControle("email2@gmail.com"))
-		.isInstanceOf(LoginException.class);
-		
+		Assertions.assertThatThrownBy(() -> loginService.loginControle(user))
+				.isInstanceOf(LoginException.class);
+
 	}
 }

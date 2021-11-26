@@ -1,5 +1,5 @@
 import React from "react";
-import TransactionScreen from "../transactions/transactions";
+import axios from "axios";
 
 export default class LoginScreen extends React.Component {
 
@@ -26,17 +26,10 @@ export default class LoginScreen extends React.Component {
 		// En cas de réussite, appeler la méthode onLoginOk() du parent avec l'email de l'utilisateur.
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
-		axios.post('/api/login/' + loginEntity).then(() => {
-			this.hideLoginScreen();
-			this.displayTransactionScreen();
-		});
-	}
-	displayTransactionScreen = () => {
-		this.setState({ visible: true });
-	}
+		axios.post('/api/login/', loginEntity).then(() => {
+			this.props.onLoginOk(this.state)
 
-	hideLoginScreen = () => {
-		this.setState({ visible: false });
+		});
 	}
 
 	render() {

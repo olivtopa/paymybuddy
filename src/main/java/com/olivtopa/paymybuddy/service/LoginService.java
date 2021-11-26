@@ -12,18 +12,17 @@ public class LoginService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public String loginControle(String email) throws LoginException {
+	public String loginControle(User userLogin) throws LoginException {
 
-		User user = userRepository.findByEmail(email);
+		User userEmail =userRepository.findByEmail(userLogin.getEmail());
 
-		if (user == null) {
+		if (userEmail == null) {
 			throw new LoginException("email not found");
 		}
-		String password = user.getPassword();
-
-		if ((user != null) && (user.getPassword().equals(password))) {
+		
+		if ((userEmail != null) && (userLogin.getPassword().equals(userEmail.getPassword()))) {
 		}
-		return email;
+		return userEmail.getEmail();
 
 	}
 }
