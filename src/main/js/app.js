@@ -10,9 +10,8 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		const storedConnectedUserEmail = localStorage.getItem('connectedUserEmail');
-		// TODO quand l'écran de listing des transactions sera ok, il faudra supprimer la valeur en dur pour travailler sur la partie login
 		this.state = {
 			connectedUserEmail: null
 
@@ -21,10 +20,12 @@ class App extends React.Component {
 
 	login = (connectedUserEmail, rememberMe) => {
 		this.setState(prevState => ({ ...prevState, connectedUserEmail: String(connectedUserEmail) }));
-		// TODO ici on enregistre dans le state le connectedUserEmail
-		if(rememberMe){
+		//ici on enregistre dans le state le connectedUserEmail
+		if (rememberMe) {
 			localStorage.setItem('connectedUserEmail', connectedUserEmail);
 		}
+		
+		
 	}
 
 	// Cette méthode est appelée par le moteur React quand il faut afficher un composant. Il contient un mix

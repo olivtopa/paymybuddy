@@ -56,6 +56,8 @@ export default class TransactionScreen extends React.Component {
 			this.setState({ visible: false });
 			this.fetchingAllUserData();
 		}
+		
+		
 
 		render() {
 			console.log('Rendering transactions screen');

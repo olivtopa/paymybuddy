@@ -1,10 +1,11 @@
 import React from "react";
+import TransactionScreen from "../transactions/transactions";
 
 export default class LoginScreen extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { email: null, password: null, rememberMe: null };
+		this.state = { email: null, password: null, rememberMe: null, visible: false };
 
 	}
 	enterEmail = (email) => {
@@ -16,7 +17,7 @@ export default class LoginScreen extends React.Component {
 		this.setState(prevState => ({ ...prevState, password: String(password) }));
 	}
 
-	
+
 
 	loginUser = (loginRequest) => {
 		// TODO Cette méthode doit être liée au click bouton (regarder send_money.js pour des exemples de liaison)
@@ -25,22 +26,31 @@ export default class LoginScreen extends React.Component {
 		// En cas de réussite, appeler la méthode onLoginOk() du parent avec l'email de l'utilisateur.
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
-		axios.post('/api/user/' + loginEntity).then(()=> {console.log('connected');
-		this.props.onLoginOk();
+		axios.post('/api/login/' + loginEntity).then(() => {
+			this.hideLoginScreen();
+			this.displayTransactionScreen();
 		});
 	}
+	displayTransactionScreen = () => {
+		this.setState({ visible: true });
+	}
 
+	hideLoginScreen = () => {
+		this.setState({ visible: false });
+	}
 
 	render() {
 
 		return (
 			<div>
+
 				<input type="text" placeholder="Email" onInput={(e) => this.enterEmail(e.target.value)} />
 				<input type="text" placeholder="Password" onInput={(e) => this.enterPassword(e.target.value)} />
-				<button className="btn btn-success" type="button" onClick={this.loginUser}>Login</button>
+				<button type="button" onClick={this.loginUser} className="btn btn-success">Login</button>
 
-				{/* TODO ajouter le champ password, la checkbox remember me et le bouton login. Des exemples sont visibles dans la partie transaction */}
 			</div>
 		)
 	}
 }
+
+
