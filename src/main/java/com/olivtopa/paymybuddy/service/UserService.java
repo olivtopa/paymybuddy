@@ -26,4 +26,8 @@ public class UserService {
 		
 		
 	}
+	
+	public User getUserByPassword(String userPassword) {
+		return userRepository.findByPassword(userPassword);
+	}
 }

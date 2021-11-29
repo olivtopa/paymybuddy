@@ -30,12 +30,14 @@ public class LoginServiceTest {
 		user.setPassword("pass1");
 
 		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(user);
+		Mockito.when(userRepository.findByPassword("pass1")).thenReturn(user);
 
 		// When
-		String email = loginService.loginControle(user);
+		User email = loginService.loginControle(user);
 
 		// Then
-		Assertions.assertThat(email).isEqualTo("email1@gmail.com");
+		Assertions.assertThat(email.getEmail()).isEqualTo("email1@gmail.com");
+		Assertions.assertThat(email.getPassword()).isEqualTo("pass1");
 
 	}
 
