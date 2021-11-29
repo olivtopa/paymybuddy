@@ -27,6 +27,7 @@ export default class AddConnectionPopup extends React.Component {
 		const entity = { emailOrigin: this.props.emailOrigin, emailContact: this.state.emailContact, name: this.state.connection };
 		axios.post('api/contacts', entity).then(() => {
 			this.hideAddConnection();
+			
 		});
 	}
 
@@ -40,7 +41,7 @@ export default class AddConnectionPopup extends React.Component {
 					<form>
 						<input type="text" placeholder="Contact's Email "onInput={(e) => this.enterEmailContact(e.target.value)} />
 						<input type="text" placeholder= "Name" onInput={(e) => this.enterConnection(e.target.value)} />
-						<button type="button" onClick={this.addAConnection} className="btn btn primary">Submit</button>
+						<button type="button" onClick={this.addAConnection} className="btn btn-primary">Submit</button>
 						<button type="button" onClick={this.hideAddConnection}>Hide</button>
 					</form>
 				</div>

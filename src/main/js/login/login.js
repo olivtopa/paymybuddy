@@ -27,7 +27,7 @@ export default class LoginScreen extends React.Component {
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
 		axios.post('/api/login/', loginEntity).then(() => {
-			this.props.onLoginOk(this.state)
+			this.props.onLoginOk(loginEntity.email, loginEntity.rememberMe)
 
 		});
 	}
