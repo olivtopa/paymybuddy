@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.olivtopa.paymybuddy.dao.UserRepository;
 import com.olivtopa.paymybuddy.exception.LoginException;
@@ -24,6 +25,8 @@ public class LoginServiceTest {
 	@Test
 	public void existingUserLoginTest() throws LoginException {
 
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
 		// Given
 		User user = new User();
 		user.setEmail("email1@gmail.com");
@@ -33,11 +36,13 @@ public class LoginServiceTest {
 		Mockito.when(userRepository.findByPassword("pass1")).thenReturn(user);
 
 		// When
-		// User email = loginService.loginControle(user);
+		User email = loginService.loginControle(user);
 
 		// Then
-		// Assertions.assertThat(email.getEmail()).isEqualTo("email1@gmail.com");
+		Assertions.assertThat(email.getEmail()).isEqualTo("email1@gmail.com");
 		// Assertions.assertThat(email.getPassword()).isEqualTo("pass1");
+		Assertions.assertThat(bCryptPasswordEncoder.matches(email.getEmail(),
+				"$2a$10$Xb9WVbjDJfz094nb.5Il7.HQKiaMiWtMWL0YON8l2JlYnldBz9lZe"));
 
 	}
 
@@ -47,11 +52,9 @@ public class LoginServiceTest {
 		// Given
 		User user = new User();
 		user.setEmail("email1@gmail.com");
-		user.setPassword("pass1");
-
-		User unKnownUser = new User();
-		unKnownUser.setEmail("email2@gmail.com");
-		unKnownUser.setPassword("pass2");
+		user.setPassword("");
+		
+		Mockito.when(userRepository.findByPassword("pass1")).thenReturn(user);
 
 		// When + Then
 		Assertions.assertThatThrownBy(() -> loginService.loginControle(user)).isInstanceOf(LoginException.class);
