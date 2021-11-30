@@ -12,9 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 @Entity
 @Table(name = "user")
 public class User {
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Id
 	@Column(name = "email")
@@ -47,7 +53,7 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return passwordEncoder.encode(password);
 	}
 
 	public void setPassword(String password) {
