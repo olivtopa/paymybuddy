@@ -39,18 +39,20 @@ export default class SendMoneyComponent extends React.Component {
 			<option key={connection.emailContact} value={connection.emailContact}>{connection.name}</option>);
 
 		return (
-			<div>
-				<div style={{ display: 'flex' }}>
+			<div id="send_money">
+				<div id="send_money_header">
 					<h5 className="card-title">Send Money</h5>
 					<button className="btn btn-primary" type="button" onClick={this.addConnection}>Add Connection</button>
 				</div>
 				<form style={{ display: 'flex' }}>
+				<div id="formulaire">
 					<select className="form-select" onChange={(e) => this.selectConnection(e.target.value)}>
 						<option value="-1">Select A Connection</option>
 						{connections}
 					</select>
 					<input type="text" onInput={(e) => this.enterAmount(e.target.value)} />
 					<button className="btn btn-success" type="button" onClick={this.transferMoney}>Pay</button>
+					</div>
 				</form>
 			</div>
 		)

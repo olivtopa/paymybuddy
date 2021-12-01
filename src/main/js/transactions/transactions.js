@@ -72,6 +72,8 @@ export default class TransactionScreen extends React.Component {
 					<SendMoneyComponent contacts={this.state.contacts}
 						transferMoney={this.transferMoney}
 						displayConnection={this.displayAddConnection} />
+						<div id="transactions">
+						<h5 className="card-title">My transactions</h5>
 					<table>
 						<tbody>
 							<tr>
@@ -82,6 +84,7 @@ export default class TransactionScreen extends React.Component {
 							{transactions}
 						</tbody>
 					</table>
+					</div>
 				</div>
 			)
 		}

@@ -1,0 +1,53 @@
+#page {
+	width:100%;
+}
+
+header h1 {
+	font-size:16px;
+	background-color: green;
+	background-size: 40px;
+	border-radius: 5%;
+}
+
+header nav {
+	display: flex;
+	margin-right: 10px;
+	width:45%;
+	justify-content: space-between;
+}
+
+#send_money{
+	width: 800px;
+	margin: auto;
+}
+
+#send_money_header{
+	display: flex;
+	justify-content: space-between;
+}
+
+#formulaire {
+	display: flex;
+	justify-content: space-between;
+}
+
+#transactions{
+	width:800px;
+	margin:auto;
+	position: relative;
+	margin-top: 10px;
+}
+
+table{
+	width:800px;
+	margin: auto;
+}
+
+th{
+	background-color: green;
+	height: 60px;
+	color:white;
+}
+tr{
+	height: 60px;
+}
