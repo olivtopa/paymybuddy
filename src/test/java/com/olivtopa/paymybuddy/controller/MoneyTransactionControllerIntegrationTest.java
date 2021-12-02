@@ -6,22 +6,23 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.olivtopa.paymybuddy.model.Contact;
+import com.olivtopa.paymybuddy.model.MoneyTransaction;
+
 
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ContactControllerIntegrationTest {
+public class MoneyTransactionControllerIntegrationTest {
 
 	@Autowired
-	private ContactController contactController;
+	MoneyTransactionController moneyTransactionController;
 
 	@Test
-	void getContatTest() {
-		Iterable<Contact> contacts = contactController.getAll("email1@gmail.com");
-		assertThat(contacts).isNotEmpty();
+	void MoneyTransactionTest() {
+		Iterable<MoneyTransaction> transactions = moneyTransactionController.getAll("email1@gmail.com");
+		assertThat(transactions).isNotEmpty();
 	}
-
 }
