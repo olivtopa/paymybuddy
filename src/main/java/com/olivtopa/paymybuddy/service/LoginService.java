@@ -23,7 +23,7 @@ public class LoginService {
 
 		if ((emailChecked == null) || (passwordChecked == null)) {
 			throw new LoginException("user not found");
-		} else if (bCryptPasswordEncoder.matches(loginEntered.getPassword(),passwordChecked.getEmail()));
+		} else if (bCryptPasswordEncoder.matches(loginEntered.getPassword(),passwordChecked.getPassword()));
 			return loginEntered;
 		}
 	}
