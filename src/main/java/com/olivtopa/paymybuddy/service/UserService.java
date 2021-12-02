@@ -23,11 +23,7 @@ public class UserService {
 
 	public void save(User origin) {
 		userRepository.save(origin);
-		
-		
+
 	}
-	
-	public User getUserByPassword(String userPassword) {
-		return userRepository.findByPassword(userPassword);
-	}
+
 }

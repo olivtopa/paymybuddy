@@ -12,18 +12,18 @@ import com.olivtopa.paymybuddy.model.User;
 public class LoginService {
 	@Autowired
 	private UserRepository userRepository;
-	
-	@Autowired
-	BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
 	public User loginControle(User loginEntered) throws LoginException {
 
-		User emailChecked = userRepository.findByEmail(loginEntered.getEmail());
-		User passwordChecked = userRepository.findByPassword(loginEntered.getPassword());
+		User userChecked = userRepository.findByEmail(loginEntered.getEmail());
 
-		if ((emailChecked == null) || (passwordChecked == null)) {
+		if ((userChecked == null)
+				|| (bCryptPasswordEncoder.matches(loginEntered.getPassword(), userChecked.getPassword()))) {
 			throw new LoginException("user not found");
-		} else if (bCryptPasswordEncoder.matches(loginEntered.getPassword(),passwordChecked.getPassword()));
+		} else
+
 			return loginEntered;
-		}
 	}
+}
