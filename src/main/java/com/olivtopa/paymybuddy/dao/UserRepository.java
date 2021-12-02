@@ -6,9 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.olivtopa.paymybuddy.model.User;
 
 @Repository
-public interface UserRepository extends CrudRepository<User,String> {
-	
+public interface UserRepository extends CrudRepository<User, String> {
+
 	User findByEmail(String email);
-	User findByPassword(String password);
 
 }
