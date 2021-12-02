@@ -32,7 +32,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value= "/api/login", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void addUser(@RequestBody User user) throws LoginException {
+	public void login(@RequestBody User user) throws LoginException {
 		logger.info("connexion {} : ",user.getEmail());
 		loginService.loginControle(user);
 	}

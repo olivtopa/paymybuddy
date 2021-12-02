@@ -1,6 +1,7 @@
 package com.olivtopa.paymybuddy.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.olivtopa.paymybuddy.dao.UserRepository;
@@ -11,6 +12,9 @@ import com.olivtopa.paymybuddy.model.User;
 public class LoginService {
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public User loginControle(User loginEntered) throws LoginException {
 
@@ -19,8 +23,7 @@ public class LoginService {
 
 		if ((emailChecked == null) || (passwordChecked == null)) {
 			throw new LoginException("user not found");
-		} else {
+		} else if (bCryptPasswordEncoder.matches(loginEntered.getPassword(),passwordChecked.getEmail()));
 			return loginEntered;
 		}
 	}
-}
