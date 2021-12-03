@@ -51,12 +51,16 @@ public class LoginServiceTest {
 		// Given
 		User user = new User();
 		user.setEmail("email1@gmail.com");
-		user.setPassword("");
+		user.setPassword("pass1");
+		
+		User loginEntered = new User();
+		loginEntered.setEmail("email1@gmail.com");
+		loginEntered.setPassword("pass");
 
-		Mockito.when(userRepository.findByEmail("unknown")).thenReturn(user);
+		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(user);
 
 		// When + Then
-		Assertions.assertThatThrownBy(() -> loginService.loginControle(user)).isInstanceOf(LoginException.class);
+		Assertions.assertThatThrownBy(() -> loginService.loginControle(loginEntered)).isInstanceOf(LoginException.class);
 
 	}
 }
