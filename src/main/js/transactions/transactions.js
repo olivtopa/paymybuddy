@@ -18,7 +18,7 @@ export default class TransactionScreen extends React.Component {
 		console.log(['Transferring money ', transactionRequest]);
 		const entity = {
 			emailOrigin: transactionRequest.selectedContact.emailOrigin,
-			emailContact:transactionRequest.selectedContact.emailContact,
+			emailContact: transactionRequest.selectedContact.emailContact,
 			description: transactionRequest.description,
 			amount: transactionRequest.amount
 		};
@@ -46,25 +46,40 @@ export default class TransactionScreen extends React.Component {
 
 	componentDidMount() {
 		this.fetchingAllUserData();
-		}
+	}
 
-		displayAddConnection = () => {
-			this.setState({ visible: true });
-		}
+	displayAddConnection = () => {
+		this.setState({ visible: true });
+	}
 
-		hideAddConnection = () => {
-			this.setState({ visible: false });
-			this.fetchingAllUserData();
-		}
-		
-		
+	hideAddConnection = () => {
+		this.setState({ visible: false });
+		this.fetchingAllUserData();
+	}
 
-		render() {
-			console.log('Rendering transactions screen');
-			const transactions = this.state.transactions.map(transaction =>
-				<Transaction key={transaction.id} transaction={transaction} />
-			);
-			return (
+
+
+	render() {
+		console.log('Rendering transactions screen');
+		const transactions = this.state.transactions.map(transaction =>
+			<Transaction key={transaction.id} transaction={transaction} />
+		);
+		return (
+			<div id="page">
+				<header>
+					<h1>Pay My Buddy</h1>
+
+					<nav>
+						<ul>
+							<li>Home</li>
+							<li>Transfer</li>
+							<li>Profile</li>
+							<li>Contact</li>
+							<li>Log off</li>
+						</ul>
+					</nav>
+
+				</header>
 				<div>
 					<AddConnectionPopup visible={this.state.visible}
 						hideAddConnection={this.hideAddConnection}
@@ -72,23 +87,24 @@ export default class TransactionScreen extends React.Component {
 					<SendMoneyComponent contacts={this.state.contacts}
 						transferMoney={this.transferMoney}
 						displayConnection={this.displayAddConnection} />
-						<div id="transactions">
+					<div id="transactions">
 						<h5 className="card-title">My transactions</h5>
-					<table>
-						<tbody>
-							<tr>
-								<th>Connections</th>
-								<th>Description</th>
-								<th>Amount</th>
-							</tr>
-							{transactions}
-						</tbody>
-					</table>
+						<table>
+							<tbody>
+								<tr>
+									<th>Connections</th>
+									<th>Description</th>
+									<th>Amount</th>
+								</tr>
+								{transactions}
+							</tbody>
+						</table>
 					</div>
 				</div>
-			)
-		}
+			</div>
+		)
 	}
+}
 
 class Transaction extends React.Component {
 

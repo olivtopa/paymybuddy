@@ -9,11 +9,16 @@ header h1 {
 	border-radius: 5%;
 }
 
-header nav {
+
+nav ul
+{
+	list-style-type: none;
 	display: flex;
+}
+nav li {
+	
 	margin-right: 10px;
-	width:45%;
-	justify-content: space-between;
+	
 }
 
 #send_money{
