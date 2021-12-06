@@ -29,7 +29,7 @@ public class User {
 	private double solde;
 
 	// OneToMany : one user can belong to several contacts
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "emailOrigin", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	List<Contact> contacts = new ArrayList<>();
 
 	public List<Contact> getContacts() {
