@@ -66,20 +66,23 @@ export default class TransactionScreen extends React.Component {
 		);
 		return (
 			<div id="page">
-				<header>
-					<h1>Pay My Buddy</h1>
+          <nav className="navbar navbar-expand-lg navbar-light bg-light">
 
-					<nav>
-						<ul>
-							<li>Home</li>
-							<li>Transfer</li>
-							<li>Profile</li>
-							<li>Contact</li>
-							<li>Log off</li>
-						</ul>
-					</nav>
+            <a className="navbar-brand">Pay My Buddy</a>
 
-				</header>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+
+              <ul className="navbar-nav mr-auto">
+                <li className="nav_item mx-1">Home</li>
+                <li className="nav_item active mx-1">Transfer</li>
+                <li className="nav_item mx-1">Profile</li>
+                <li className="nav_item mx-1">Contact</li>
+                <li className="nav_item mx-1">Log off</li>
+              </ul>
+            </div>
+
+          </nav>
+
 				<div>
 					<AddConnectionPopup visible={this.state.visible}
 						hideAddConnection={this.hideAddConnection}
@@ -101,6 +104,17 @@ export default class TransactionScreen extends React.Component {
 						</table>
 					</div>
 				</div>
+
+        <div className="footer">
+          <p className="mx-1 footer_page">&lt;&lt;</p>
+          <p className="mx-1 footer_page">1</p>
+          <p className="mx-1 footer_page">2</p>
+          <p className="mx-1 footer_page">3</p>
+          <p className="mx-1 footer_page">4</p>
+          <p className="mx-1 footer_page">5</p>
+          <p className="mx-1 footer_page">&gt;&gt;</p>
+        </div>
+
 			</div>
 		)
 	}
