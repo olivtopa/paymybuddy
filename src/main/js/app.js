@@ -13,7 +13,7 @@ class App extends React.Component {
 
 		const storedConnectedUserEmail = localStorage.getItem('connectedUserEmail');
 		this.state = {
-			connectedUserEmail: null
+			connectedUserEmail: storedConnectedUserEmail
 
 		}
 	}

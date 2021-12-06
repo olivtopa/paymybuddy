@@ -20,10 +20,10 @@ export default class LoginScreen extends React.Component {
 
 
 	loginUser = (loginRequest) => {
-		// TODO Cette méthode doit être liée au click bouton (regarder send_money.js pour des exemples de liaison)
+		//Cette méthode est liée au click bouton
 		// récupérer du state email, password et remember me, puis avec ça,
-		//  appeler le back-end (comme pour TransactionScreen.transferMoney)
-		// En cas de réussite, appeler la méthode onLoginOk() du parent avec l'email de l'utilisateur.
+		//  appele le back-end
+		// En cas de réussite, appele la méthode onLoginOk() du parent avec l'email de l'utilisateur.
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
 		axios.post('/api/login/', loginEntity).then(() => {
@@ -35,12 +35,18 @@ export default class LoginScreen extends React.Component {
 	render() {
 
 		return (
-			<div>
+			<div style={{ display: 'flex', justifyContent: 'center' }}>
+				<div style={{ display: 'flex', flexDirection: 'column', width: '800px', paddinigTop: '200ox', alignItems: 'center' }}>
 
-				<input type="text" placeholder="Email" onInput={(e) => this.enterEmail(e.target.value)} />
-				<input type="text" placeholder="Password" onInput={(e) => this.enterPassword(e.target.value)} />
-				<button type="button" onClick={this.loginUser} className="btn btn-success">Login</button>
-
+					<p>Pay My Buddy</p>
+					<input type="text" placeholder="Email" onInput={(e) => this.enterEmail(e.target.value)} />
+					<input type="text" placeholder="Password" onInput={(e) => this.enterPassword(e.target.value)} />
+					<div style={{ display: 'flex' }}>
+						<input type="checkbox" onClick={() => this.rememberMe()} />
+						<p>Remember Me</p>
+					</div>
+					<button type="button" onClick={this.loginUser} className="btn btn-success">Login</button>
+				</div>
 			</div>
 		)
 	}
