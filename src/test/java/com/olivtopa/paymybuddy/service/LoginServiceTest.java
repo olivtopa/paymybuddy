@@ -42,25 +42,31 @@ public class LoginServiceTest {
 		// Assertions.assertThat(email.getPassword()).isEqualTo("pass1");
 		Assertions.assertThat(bCryptPasswordEncoder.matches(email.getEmail(),
 				"$2a$10$Xb9WVbjDJfz094nb.5Il7.HQKiaMiWtMWL0YON8l2JlYnldBz9lZe"));
+	}
+	
+	@Test
+	private void wrongPassword() {
+		User user = new User();
+		user.setEmail("email1@gmail.com");
+		user.setPassword("pass1");
 
+		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(user);
+
+		// When = Then
+		Assertions.assertThatThrownBy(()-> loginService.loginControle(user)).isInstanceOf(LoginException.class);
 	}
 
 	@Test
 	private void unknownUserLoginTest() throws LoginException {
 
 		// Given
-		User user = new User();
-		user.setEmail("email1@gmail.com");
-		user.setPassword("pass1");
-		
 		User loginEntered = new User();
 		loginEntered.setEmail("email1@gmail.com");
 		loginEntered.setPassword("pass");
 
-		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(user);
-
 		// When + Then
-		Assertions.assertThatThrownBy(() -> loginService.loginControle(loginEntered)).isInstanceOf(LoginException.class);
+		Assertions.assertThatThrownBy(() -> loginService.loginControle(loginEntered))
+				.isInstanceOf(LoginException.class);
 
 	}
 }
