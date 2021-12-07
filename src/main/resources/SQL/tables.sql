@@ -1,10 +1,11 @@
 # Les emails font au plus 320 caractères: https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address#:~:text=%22There%20is%20a%20length%20limit,total%20length%20of%20320%20characters.
 # Un mot de passe peut faire au max 30 caractères (mais on peut utiliser un mot de passe plus court. Il s'agit uniquement de la taille max)
+CREATE DATABASE pmb;
 USE pmb;
 CREATE TABLE user
 (
     email    VARCHAR(320) NOT NULL,
-    password VARCHAR(30)  NOT NULL,
+    password VARCHAR(110)  NOT NULL,
     solde    DECIMAL      NOT NULL,
     PRIMARY KEY (email)
 )
@@ -27,7 +28,7 @@ CREATE TABLE money_transaction
     id              BIGINT       NOT NULL AUTO_INCREMENT,
     email_origin    VARCHAR(320) NOT NULL,
     email_recipient VARCHAR(320) NOT NULL,
-    description     VARCHAR(40)  NOT NULL,
+    description     VARCHAR(100)  NOT NULL,
     creation_date   DATETIME     NOT NULL,
     amount          DECIMAL      NOT NULL,
     PRIMARY KEY (id),
