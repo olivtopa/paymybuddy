@@ -1,5 +1,6 @@
 # Les emails font au plus 320 caractères: https://stackoverflow.com/questions/386294/what-is-the-maximum-length-of-a-valid-email-address#:~:text=%22There%20is%20a%20length%20limit,total%20length%20of%20320%20characters.
 # Un mot de passe peut faire au max 30 caractères (mais on peut utiliser un mot de passe plus court. Il s'agit uniquement de la taille max)
+USE pmb;
 CREATE TABLE user
 (
     email    VARCHAR(320) NOT NULL,
