@@ -27,14 +27,17 @@ public class ContactControllerIntegrationTest {
 
 	@Test
 	void addContactTest() {
+		//Given
 		Contact newContact = new Contact();
 		newContact.setEmailContact("email33@gmail.com");
 		newContact.setEmailOrigin("email1@gmail.com");
 		newContact.setName("Jules");
 		contactController.addContact(newContact);
 		
+		//When
 		Iterable<Contact> contacts = contactController.getAll("email1@gmail.com");
 		
+		//Then
 		//assertThat(contacts.equals(newContact));
 		assertThat(contacts).isNotEmpty();
 		
