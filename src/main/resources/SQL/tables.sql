@@ -6,7 +6,7 @@ CREATE TABLE user
 (
     email    VARCHAR(320) NOT NULL,
     password VARCHAR(110)  NOT NULL,
-    solde    DECIMAL      NOT NULL,
+    solde    DOUBLE      NOT NULL,
     PRIMARY KEY (email)
 )
     ENGINE = INNODB;
@@ -30,7 +30,7 @@ CREATE TABLE money_transaction
     email_recipient VARCHAR(320) NOT NULL,
     description     VARCHAR(100)  NOT NULL,
     creation_date   DATETIME     NOT NULL,
-    amount          DECIMAL      NOT NULL,
+    amount          DOUBLE      NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_money_transaction_email_origin_user FOREIGN KEY (email_origin) REFERENCES user (email),
     CONSTRAINT fk_money_transaction_email_recipient_user FOREIGN KEY (email_recipient) REFERENCES user (email)

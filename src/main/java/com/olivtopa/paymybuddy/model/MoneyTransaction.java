@@ -18,7 +18,7 @@ public class MoneyTransaction {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	@ManyToOne
 	@JoinColumns({ @JoinColumn(name = "email_origin", referencedColumnName = "email_origin"),
@@ -39,7 +39,7 @@ public class MoneyTransaction {
 		return description;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 

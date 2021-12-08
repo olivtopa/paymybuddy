@@ -4,7 +4,7 @@ public class Transaction {
 
 	private String emailOrigin;
 	private String emailContact;
-	private double Amount;
+	private Double Amount;
 	private String description;
 
 	public String getDescription() {
@@ -31,11 +31,11 @@ public class Transaction {
 		this.emailContact = emailContact;
 	}
 
-	public double getAmount() {
+	public Double getAmount() {
 		return Amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		Amount = amount;
 	}
 
