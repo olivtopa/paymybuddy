@@ -25,16 +25,16 @@ public class TransactionService {
 		User origin = userService.getUserByEmail(transaction.getEmailOrigin());
 		User contact = userService.getUserByEmail(transaction.getEmailContact());
 
-		double soldeDuDebtor = origin.getSolde();
-		double soldeDuDestinataire = contact.getSolde();
+		double debtorBalance = origin.getSolde();
+		double recipientBalance = contact.getSolde();
 
-		if (transaction.getAmount() <= soldeDuDebtor) {
+		if (transaction.getAmount() <= debtorBalance) {
 
-			soldeDuDebtor -= transaction.getAmount();
-			soldeDuDestinataire += transaction.getAmount();
+			debtorBalance -= transaction.getAmount();
+			recipientBalance += transaction.getAmount();
 
-			origin.setSolde(soldeDuDebtor);
-			contact.setSolde(soldeDuDestinataire);
+			origin.setSolde(debtorBalance);
+			contact.setSolde(recipientBalance);
 
 			userService.save(origin);
 			userService.save(contact);

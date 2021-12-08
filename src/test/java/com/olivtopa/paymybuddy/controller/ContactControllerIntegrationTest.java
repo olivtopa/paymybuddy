@@ -32,14 +32,14 @@ public class ContactControllerIntegrationTest {
 		newContact.setEmailContact("email33@gmail.com");
 		newContact.setEmailOrigin("email1@gmail.com");
 		newContact.setName("Jules");
-		contactController.addContact(newContact);
+		
 		
 		//When
-		Iterable<Contact> contacts = contactController.getAll("email1@gmail.com");
+		contactController.addContact(newContact);;
 		
 		//Then
 		//assertThat(contacts.equals(newContact));
-		assertThat(contacts).isNotEmpty();
+		assertThat(contactController.getAll("email1@gmail.com")).isNotEmpty();
 		
 
 	}
