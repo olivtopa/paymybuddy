@@ -32,7 +32,7 @@ public class MoneyTransaction {
 	@Column(name = "amount")
 	private Double amount;
 
-	@Column(name = "creation_date")
+	@Column(name = "creationDate")
 	private Date creationDate;
 
 	public String getDescription() {

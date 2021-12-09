@@ -35,7 +35,7 @@ public class UserController {
 	@PostMapping(value= "/api/login", consumes =MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public void login(@RequestBody User user) throws LoginException {
 		logger.info("connexion {} : ",user.getEmail());
-		user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		//user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
 		loginService.loginControle(user);
 	}
 	

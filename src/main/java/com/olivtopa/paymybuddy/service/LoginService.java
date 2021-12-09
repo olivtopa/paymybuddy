@@ -20,7 +20,7 @@ public class LoginService {
 		User userChecked = userRepository.findByEmail(loginEntered.getEmail());
 
 		if ((userChecked == null)
-				|| (bCryptPasswordEncoder.matches(loginEntered.getPassword(), userChecked.getPassword()))) {
+				|| (!(bCryptPasswordEncoder.matches(loginEntered.getPassword(), userChecked.getPassword())))) {
 			throw new LoginException("user not found");
 		} else
 
