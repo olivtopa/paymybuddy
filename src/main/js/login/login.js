@@ -5,7 +5,7 @@ export default class LoginScreen extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { email: null, password: null, rememberMe: null, visible: false };
+		this.state = { email: null, password: null, rememberMe: false, visible: false };
 
 	}
 	enterEmail = (email) => {
@@ -15,6 +15,10 @@ export default class LoginScreen extends React.Component {
 
 	enterPassword = (password) => {
 		this.setState(prevState => ({ ...prevState, password: String(password) }));
+	}
+	
+	rememberMe = () => {
+		this.setState(prevState => ({ ...prevState, rememberMe:!prevState.rememberMe }));
 	}
 
 
