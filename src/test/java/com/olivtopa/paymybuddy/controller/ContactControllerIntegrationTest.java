@@ -2,8 +2,6 @@ package com.olivtopa.paymybuddy.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,20 +25,19 @@ public class ContactControllerIntegrationTest {
 
 	@Test
 	void addContactTest() {
-		//Given
+		// Given
 		Contact newContact = new Contact();
 		newContact.setEmailContact("email33@gmail.com");
 		newContact.setEmailOrigin("email1@gmail.com");
 		newContact.setName("Jules");
-		
-		
-		//When
-		contactController.addContact(newContact);;
-		
-		//Then
-		//assertThat(contacts.equals(newContact));
+
+		// When
+		contactController.addContact(newContact);
+		;
+
+		// Then
+		// assertThat(contacts.equals(newContact));
 		assertThat(contactController.getAll("email1@gmail.com")).isNotEmpty();
-		
 
 	}
 }
