@@ -7,6 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.olivtopa.paymybuddy.dao.UserRepository;
 import com.olivtopa.paymybuddy.exception.LoginException;
@@ -41,6 +42,17 @@ public class LoginServiceTest {
 		// Then
 		Assertions.assertThat(email.getEmail()).isEqualTo("email1@gmail.com");
 
+		/*
+		 * Encodage de quelques mots de pass qui seront entrées dans la BDD manuellement
+		 * via un script SQL
+		 * 
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass44"));
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass55"));
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass66"));
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass77"));
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass88"));
+		 * System.out.println(new BCryptPasswordEncoder().encode("pass99"));
+		 */
 	}
 
 	@Test
