@@ -41,11 +41,10 @@
 
    
 # SQL-Script
-Creation of the database, and user, contact, money_transaction tables: 
+Creation of the database, and user, contact, money_transaction tables :
 ![Creation of the database ](tables.sql)
 
 Data insertion Scritp :
-
 ![Data insertion](data_insertion.sql)
 
 ## code-layout
