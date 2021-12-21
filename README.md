@@ -33,7 +33,7 @@
 
 
 ## diagrams
-![Class diagram](./img/Diag_Class.png)
+![Class diagram](./img/Diag_class.png)
 ![Class diagram](./img/mpd.png)
 ![Class diagram](./img/Java_DAL.png)
 ![Class diagram](./img/State_Diag_login.png)
