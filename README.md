@@ -54,7 +54,7 @@ In order to secure the application, we have decided not to include the password 
 
 the maven command below register, when starting Spring Boot, the username and password for connecting to the database, in the environment variable of my workstation :
 
-mvn spring-boot:run -Dspring-boot.run.arguments = "--spring.datasource.username = Oliv --spring.datasource.password = test"
+mvn spring-boot:run -Dspring-boot.run.arguments = "--spring.datasource.username = user --spring.datasource.password = password"
 
 ## code-layout
 
