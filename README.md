@@ -11,6 +11,7 @@
 * [Technologies Used](#technologies-used)
 * [diagrams](#diagrams)
 * [SQL Script](#SQL-Script)
+* [database connection](#database-connection)
 * [Code layout](#code-layout)
 * [The back end](#The-back-end)
 * [Test](#Test)
@@ -40,12 +41,20 @@
 
 
    
-# SQL-Script
+## SQL-Script
 Creation of the database, and user, contact, money_transaction tables :
 ![Creation of the database ](tables.sql)
 
 Data insertion Scritp :
 ![Data insertion](data_insertion.sql)
+
+## database connection
+
+In order to secure the application, we have decided not to include the password in the properties file.
+
+the maven command below register, when starting Spring Boot, the username and password for connecting to the database, in the environment variable of my workstation :
+
+mvn spring-boot:run -Dspring-boot.run.arguments = "--spring.datasource.username = Oliv --spring.datasource.password = test"
 
 ## code-layout
 
