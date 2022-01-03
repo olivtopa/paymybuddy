@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.olivtopa.paymybuddy.dto.UserRequest;
 import com.olivtopa.paymybuddy.exception.LoginException;
 import com.olivtopa.paymybuddy.model.User;
 import com.olivtopa.paymybuddy.service.LoginService;
@@ -36,6 +37,11 @@ public class UserController {
 	public void login(@RequestBody User user) throws LoginException {
 		logger.info("connexion {} : ", user.getEmail());
 		loginService.loginControle(user);
+	}
+	
+	@PostMapping(value = "/api/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void create(@RequestBody UserRequest user) {
+		userService.createUser(user);
 	}
 
 }
