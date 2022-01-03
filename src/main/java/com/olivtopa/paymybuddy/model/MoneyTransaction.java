@@ -9,6 +9,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 
@@ -34,6 +37,9 @@ public class MoneyTransaction {
 
 	@Column(name = "creationDate")
 	private Date creationDate;
+	
+	@JsonIgnore
+	private Double commision;
 
 	public String getDescription() {
 		return description;
