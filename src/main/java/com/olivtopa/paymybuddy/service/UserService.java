@@ -50,6 +50,6 @@ public class UserService {
 
 		save(userTocreate);
 
-		logger.info("Created user" + userTocreate.getEmail());
+		logger.info("Created user " + userTocreate.getEmail());
 	}
 }
