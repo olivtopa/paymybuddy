@@ -28,7 +28,7 @@ public class UserServiceTest {
 	private UserRepository userRepository;
 
 	@Test
-	public void createNewUnexistingUser() {
+	public void createNewUnexistingUser() throws UserCreationException {
 
 		// Given
 		UserRequest userRequest = new UserRequest();
@@ -45,7 +45,7 @@ public class UserServiceTest {
 	}
 	
 	@Test
-	public void createExistingUser() {
+	public void createExistingUser() throws UserCreationException {
 		
 		// Given
 		UserRequest userRequest = new UserRequest();

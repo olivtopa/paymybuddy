@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.olivtopa.paymybuddy.dto.UserRequest;
 import com.olivtopa.paymybuddy.exception.LoginException;
+import com.olivtopa.paymybuddy.exception.UserCreationException;
 import com.olivtopa.paymybuddy.model.User;
 import com.olivtopa.paymybuddy.service.LoginService;
 import com.olivtopa.paymybuddy.service.UserService;
@@ -40,7 +41,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value = "/api/register", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public void create(@RequestBody UserRequest user) {
+	public void create(@RequestBody UserRequest user) throws UserCreationException {
 		userService.createUser(user);
 	}
 
