@@ -31,10 +31,10 @@ VALUES('email1@gmail.com','email11@gmail.com','contact1'),
 ('email9@gmail.com','email99@gmail.com','contact6'),
 ('email1@gmail.com','email4@gmail.com','Jlo');
 
-INSERT INTO money_transaction(email_origin,email_recipient,description,creation_date,amount)
-VALUES('email1@gmail.com','email11@gmail.com','transaction number 1','2020-10-27 11:53:25','100'),
-('email2@gmail.com','email22@gmail.com','transaction number 2','2020-10-28 10:43:25','110'),
-('email3@gmail.com','email33@gmail.com','transaction number 3','2020-10-29 13:18:00','200');
+INSERT INTO money_transaction(email_origin,email_recipient,description,creation_date,amount,commission)
+VALUES('email1@gmail.com','email11@gmail.com','transaction number 1','2020-10-27 11:53:25','100','0.5'),
+('email2@gmail.com','email22@gmail.com','transaction number 2','2020-10-28 10:43:25','110','0.55'),
+('email3@gmail.com','email33@gmail.com','transaction number 3','2020-10-29 13:18:00','200','1');
 
 
 

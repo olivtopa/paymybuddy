@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.olivtopa.paymybuddy.dao.UserRepository;
 import com.olivtopa.paymybuddy.dto.UserRequest;
-import com.olivtopa.paymybuddy.exception.UserCreationException;
 import com.olivtopa.paymybuddy.model.User;
 
 @Service
@@ -19,11 +18,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
-	BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-
 	public Iterable<User> getUsers() {
 		return userRepository.findAll();
-
 	}
 
 	public User getUserByEmail(String userEmail) {
@@ -34,23 +30,23 @@ public class UserService {
 		userRepository.save(origin);
 	}
 
-	public void createUser(UserRequest userRequest) throws UserCreationException {
+	public void createUser(UserRequest userRequest) {
 		User existingUser = userRepository.findByEmail(userRequest.getEmail());
 
 		if (existingUser != null) {
-			throw new UserCreationException("This email connot be used");
+			throw new IllegalArgumentException("This email cannot be used");
 		}
 
 		if (!userRequest.getPassword().equals(userRequest.getPasswordConfirmation())) {
-			throw new UserCreationException("Passwords does not match");
+			throw new IllegalArgumentException("Password does not match");
 		}
 
-		User userTocreate = new User();
-		userTocreate.setEmail(userRequest.getEmail());
-		userTocreate.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+		User userToCreate = new User();
+		userToCreate.setEmail(userRequest.getEmail());
+		userToCreate.setPassword(new BCryptPasswordEncoder().encode(userRequest.getPassword()));
 
-		save(userTocreate);
+		save(userToCreate);
 
-		logger.info("Created user " + userTocreate.getEmail());
+		logger.info("Created user " + userToCreate.getEmail());
 	}
 }

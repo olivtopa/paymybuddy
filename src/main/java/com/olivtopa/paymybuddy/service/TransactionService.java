@@ -13,6 +13,9 @@ import com.olivtopa.paymybuddy.model.User;
 @Service
 public class TransactionService {
 
+	private static final double PAY_MY_BUDDY_RATE = 0.005;
+	private static final double TOTAL_RATE = 1 + PAY_MY_BUDDY_RATE;
+
 	@Autowired
 	private UserService userService;
 
@@ -28,9 +31,10 @@ public class TransactionService {
 		double debtorBalance = origin.getSolde();
 		double recipientBalance = contact.getSolde();
 
-		if (transaction.getAmount() <= debtorBalance) {
+		if ((transaction.getAmount() * TOTAL_RATE) <= debtorBalance) {
 
-			debtorBalance -= transaction.getAmount();
+			// Simulating the application fees
+			debtorBalance -= transaction.getAmount() * TOTAL_RATE;
 			recipientBalance += transaction.getAmount();
 
 			origin.setSolde(debtorBalance);
@@ -46,6 +50,7 @@ public class TransactionService {
 			moneyTransaction.setContact(contact1);
 			moneyTransaction.setAmount(transaction.getAmount());
 			moneyTransaction.setDescription(transaction.getDescription());
+			moneyTransaction.setCommission(transaction.getAmount() * PAY_MY_BUDDY_RATE);
 			moneyTransactionService.create(moneyTransaction);
 
 		} else {

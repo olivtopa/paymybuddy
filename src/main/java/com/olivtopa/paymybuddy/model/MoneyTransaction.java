@@ -37,9 +37,9 @@ public class MoneyTransaction {
 
 	@Column(name = "creationDate")
 	private Date creationDate;
-	
+
 	@JsonIgnore
-	private Double commision;
+	private Double commission;
 
 	public String getDescription() {
 		return description;
@@ -77,10 +77,23 @@ public class MoneyTransaction {
 		this.creationDate = creationDate;
 	}
 
+	public Double getCommission() {
+		return commission;
+	}
+
+	public void setCommission(Double commission) {
+		this.commission = commission;
+	}
+
 	@Override
 	public String toString() {
-		return "MoneyTransaction{" + "id=" + id + ", contact=" + contact + ", description= '" + description + '\''
-				+ ", amount=" + amount + ", creationDate=" + creationDate + '}';
-
+		return "MoneyTransaction{" +
+				"id=" + id +
+				", contact=" + contact +
+				", description='" + description + '\'' +
+				", amount=" + amount +
+				", creationDate=" + creationDate +
+				", commission=" + commission +
+				'}';
 	}
 }
