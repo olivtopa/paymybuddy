@@ -34,8 +34,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 		.authorizeRequests().anyRequest().authenticated()
 		.and().formLogin().disable()
-		.csrf().disable()
-		.httpBasic();
+		.csrf().disable();
+		//.httpBasic();
 	}
 	
 	@Bean

@@ -16,12 +16,10 @@ export default class LoginScreen extends React.Component {
 	enterPassword = (password) => {
 		this.setState(prevState => ({ ...prevState, password: String(password) }));
 	}
-	
+
 	rememberMe = () => {
 		this.setState(prevState => ({ ...prevState, rememberMe:!prevState.rememberMe }));
 	}
-
-
 
 	loginUser = (loginRequest) => {
 		//Cette méthode est liée au click bouton
@@ -31,8 +29,7 @@ export default class LoginScreen extends React.Component {
 		console.log(['login', loginRequest]);
 		const loginEntity = this.state;
 		axios.post('/api/login/', loginEntity).then(() => {
-			this.props.onLoginOk(loginEntity.email, loginEntity.rememberMe)
-
+			this.props.onLoginOk(loginEntity.email, loginEntity.rememberMe, loginEntity.password)
 		});
 	}
 
@@ -50,6 +47,7 @@ export default class LoginScreen extends React.Component {
 						<p>Remember Me</p>
 					</div>
 					<button type="button" onClick={this.loginUser} className="btn btn-success">Login</button>
+					<button type="button" onClick={() => this.props.selectScreen('registration')} className="btn">No account yet?</button>
 				</div>
 			</div>
 		)
