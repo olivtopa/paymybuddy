@@ -26,15 +26,15 @@ public class UserServiceTest {
 
 		// Given
 		UserRequest userRequest = new UserRequest();
-		userRequest.setEmail("email001@gmail.com");
-		userRequest.setPassword("pass001");
-		userRequest.setPasswordConfirmation("pass001");
+		userRequest.setEmail("email002@gmail.com");
+		userRequest.setPassword("pass002");
+		userRequest.setPasswordConfirmation("pass002");
 
 		// When
 		userService.createUser(userRequest);
 
 		// Then
-		Assertions.assertThat(userRepository.findByEmail("email001@gmail.com") != null);
+		Assertions.assertThat(userRepository.findByEmail("email002@gmail.com")).isNotNull();
 
 	}
 
@@ -50,10 +50,7 @@ public class UserServiceTest {
 
 		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(existingUser);
 
-		// When
-		userService.createUser(userRequest);
-
-		// Then
+		// When + Then
 		Assertions.assertThatThrownBy(() -> userService.createUser(userRequest))
 				.isInstanceOf(IllegalArgumentException.class);
 
