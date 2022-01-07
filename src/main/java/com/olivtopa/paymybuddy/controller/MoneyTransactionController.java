@@ -21,10 +21,10 @@ public class MoneyTransactionController {
 
 	@Autowired
 	private MoneyTransactionService moneyTransactionService;
-	
+
 	@Autowired
 	TransactionService transactionService;
-	
+
 	private static Logger logger = LoggerFactory.getLogger(MoneyTransactionController.class);
 
 	@GetMapping(value = "/api/transactions/{userEmail}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -38,6 +38,6 @@ public class MoneyTransactionController {
 	public void create(@RequestBody Transaction transaction) throws NotEnoughMoneyException {
 		logger.info("Transaction {}", transaction);
 		transactionService.transferMoney(transaction);
-		
+
 	}
 }

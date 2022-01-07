@@ -15,21 +15,21 @@ import com.olivtopa.paymybuddy.service.ContactService;
 
 @RestController
 public class ContactController {
-	
+
 	@Autowired
 	private ContactService contactService;
 	private static Logger logger = LoggerFactory.getLogger(ContactController.class);
-	
+
 	@PostMapping(value = "/api/contacts")
 	public void addContact(@RequestBody Contact newContact) {
-		logger.info("Add a contact {}",newContact);
+		logger.info("Add a contact {}", newContact);
 		contactService.addContact(newContact);
 	}
-	
+
 	@GetMapping(value = "/api/contacts/{userEmail}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Iterable<Contact> getAll(@PathVariable("userEmail") String userEmail){
+	public Iterable<Contact> getAll(@PathVariable("userEmail") String userEmail) {
 		logger.info("contacts's {} : ", userEmail);
 		return contactService.getContactsByUser(userEmail);
 
-}
+	}
 }

@@ -13,12 +13,12 @@ import com.olivtopa.paymybuddy.service.BankService;
 
 @RestController
 public class BankController {
-	
-	private BankService bankService;
-	
-	private static final Logger logger = LoggerFactory.getLogger(BankController.class);
-	
-	public BankController(BankService bankService) {
+
+    private final BankService bankService;
+
+    private static final Logger logger = LoggerFactory.getLogger(BankController.class);
+
+    public BankController(BankService bankService) {
         this.bankService = bankService;
     }
 
