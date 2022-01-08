@@ -11,37 +11,49 @@ import com.olivtopa.paymybuddy.model.User;
 @Service
 public class BankService {
 
-	 private final UserService userService;
+	private final UserService userService;
 
-	    public BankService(UserService userService) {
-	        this.userService = userService;
-	    }
+	public BankService(UserService userService) {
+		this.userService = userService;
+	}
 
-	    @Transactional
-	    public void deposit(DepositRequest depositRequest) {
+	@Transactional
+	public void deposit(DepositRequest depositRequest) throws IllegalArgumentException {
 
-	        //should use user coming from Spring Secu
+		// should use user coming from Spring Secu
 
-	        User userByEmail = userService.getUserByEmail(depositRequest.getEmail());
+		User userByEmail = userService.getUserByEmail(depositRequest.getEmail());
 
-	        userByEmail.setSolde(userByEmail.getSolde() + depositRequest.getMoneyToAdd());
+		if (userByEmail != null) {
 
-	        userService.save(userByEmail);
-	    }
+			userByEmail.setSolde(userByEmail.getSolde() + depositRequest.getMoneyToAdd());
 
-	    @Transactional
-	    public void withdraw(WithdrawRequest withdrawRequest) throws NotEnoughMoneyException {
+			userService.save(userByEmail);
+		} else {
+			throw new IllegalArgumentException("User unknown");
+		}
+	}
 
-	        //should use user coming from Spring Secu
+	@Transactional
+	public void withdraw(WithdrawRequest withdrawRequest) throws NotEnoughMoneyException {
 
-	        User userByEmail = userService.getUserByEmail(withdrawRequest.getEmail());
+		// should use user coming from Spring Secu
 
-	        if(userByEmail.getSolde() >= withdrawRequest.getAmount()) {
-	            userByEmail.setSolde(userByEmail.getSolde() - withdrawRequest.getAmount());
-	            userService.save(userByEmail);
-	        } else {
-	        	throw new NotEnoughMoneyException("Solde insuffisant");
-	        }
-	    }
-	
+		User userByEmail = userService.getUserByEmail(withdrawRequest.getEmail());
+
+		if (userByEmail != null) {
+
+			//
+			if (userByEmail.getSolde() >= withdrawRequest.getAmount()) {
+				userByEmail.setSolde(userByEmail.getSolde() - withdrawRequest.getAmount());
+				userService.save(userByEmail);
+			} else {
+				throw new NotEnoughMoneyException("Solde insuffisant");
+			}
+		} else {
+			throw new IllegalArgumentException("User unknown");
+		}
+
+	}
+
 }
