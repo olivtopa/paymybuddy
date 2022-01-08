@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.olivtopa.paymybuddy.dto.DepositRequest;
 import com.olivtopa.paymybuddy.dto.WithdrawRequest;
+import com.olivtopa.paymybuddy.exception.NotEnoughMoneyException;
 import com.olivtopa.paymybuddy.service.BankService;
 
 @RestController
@@ -29,7 +30,7 @@ public class BankController {
     }
 
     @PostMapping(value = "/api/withdrawMoney", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void withdrawMoney(@RequestBody WithdrawRequest withdrawRequest) {
+    public void withdrawMoney(@RequestBody WithdrawRequest withdrawRequest) throws NotEnoughMoneyException {
         logger.info("Withdrawing money {}", withdrawRequest);
         bankService.withdraw(withdrawRequest);
     }

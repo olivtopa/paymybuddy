@@ -3,22 +3,23 @@ package com.olivtopa.paymybuddy.service;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.olivtopa.paymybuddy.dao.UserRepository;
 import com.olivtopa.paymybuddy.dto.UserRequest;
 import com.olivtopa.paymybuddy.model.User;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 public class UserServiceTest {
 
-	@InjectMocks
+	@Autowired
 	private UserService userService;
 
-	@Mock
+	@Autowired
 	private UserRepository userRepository;
 
 	@Test
@@ -48,8 +49,7 @@ public class UserServiceTest {
 		User existingUser = new User();
 		existingUser.setEmail("email1@gmail.com");
 
-		Mockito.when(userRepository.findByEmail("email1@gmail.com")).thenReturn(existingUser);
-
+		
 		// When + Then
 		Assertions.assertThatThrownBy(() -> userService.createUser(userRequest))
 				.isInstanceOf(IllegalArgumentException.class);

@@ -1,5 +1,7 @@
 package com.olivtopa.paymybuddy.service;
 
+import static org.assertj.core.api.Assertions.within;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,11 +33,11 @@ public class TransactionServiceTest {
 		Transaction transaction = new Transaction();
 		transaction.setEmailOrigin("email1@gmail.com");
 		transaction.setEmailContact("email2@gmail.com");
-		transaction.setAmount(200.00);
+		transaction.setAmount(20.00);
 
 		User userOrigin = new User();
 		userOrigin.setEmail("email1@gmail.com");
-		userOrigin.setSolde(201.00);
+		userOrigin.setSolde(200.00);
 
 		User userContact = new User();
 		userContact.setEmail("email2@gmail.com");
@@ -48,8 +50,8 @@ public class TransactionServiceTest {
 		transactionService.transferMoney(transaction);
 
 		// Then
-		Assertions.assertThat(userContact.getSolde()).isEqualTo(212.00);
-		Assertions.assertThat(userOrigin.getSolde()).isEqualTo(1.00);
+		Assertions.assertThat(userContact.getSolde()).isEqualTo(32.00);
+		Assertions.assertThat(userOrigin.getSolde()).isEqualTo(179.9, within(0.001));
 
 	}
 
@@ -89,7 +91,7 @@ public class TransactionServiceTest {
 
 		User userOrigin = new User();
 		userOrigin.setEmail("email1@gmail.com");
-		userOrigin.setSolde(200.0);
+		userOrigin.setSolde(201.0);
 
 		User userContact = new User();
 		userContact.setEmail("email2@gmail.com");
@@ -103,6 +105,6 @@ public class TransactionServiceTest {
 
 		// Then
 		Assertions.assertThat(userContact.getSolde()).isEqualTo(212.00);
-		Assertions.assertThat(userOrigin.getSolde()).isEqualTo(0.00);
+		Assertions.assertThat(userOrigin.getSolde()).isEqualTo(0.0, within(0.001));
 	}
 }

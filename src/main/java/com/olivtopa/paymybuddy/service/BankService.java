@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.olivtopa.paymybuddy.dto.DepositRequest;
 import com.olivtopa.paymybuddy.dto.WithdrawRequest;
+import com.olivtopa.paymybuddy.exception.NotEnoughMoneyException;
 import com.olivtopa.paymybuddy.model.User;
 
 @Service
@@ -19,7 +20,7 @@ public class BankService {
 	    @Transactional
 	    public void deposit(DepositRequest depositRequest) {
 
-	        // TODO should use user coming from Spring Secu
+	        //should use user coming from Spring Secu
 
 	        User userByEmail = userService.getUserByEmail(depositRequest.getEmail());
 
@@ -29,9 +30,9 @@ public class BankService {
 	    }
 
 	    @Transactional
-	    public void withdraw(WithdrawRequest withdrawRequest) {
+	    public void withdraw(WithdrawRequest withdrawRequest) throws NotEnoughMoneyException {
 
-	        // TODO should use user coming from Spring Secu
+	        //should use user coming from Spring Secu
 
 	        User userByEmail = userService.getUserByEmail(withdrawRequest.getEmail());
 
@@ -39,7 +40,7 @@ public class BankService {
 	            userByEmail.setSolde(userByEmail.getSolde() - withdrawRequest.getAmount());
 	            userService.save(userByEmail);
 	        } else {
-	            // throw exception
+	        	throw new NotEnoughMoneyException("Solde insuffisant");
 	        }
 	    }
 	
