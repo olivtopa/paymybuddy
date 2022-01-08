@@ -14,7 +14,6 @@ VALUES('email1@gmail.com','$2a$10$Xb9WVbjDJfz094nb.5Il7.HQKiaMiWtMWL0YON8l2JlYnl
 ('email10@gmail.com','$2a$10$F2To1ReUEvvIRUKrnznHbuMWPdEaOdNeyOiGFeim6ht3AYghz7loy','610'),
 ('email44@gmail.com','$2a$10$9cKYNSDhk1bFe/5EBtNDD.cvNe25yq5yGbeDwNcr2QvAnxMv2z1Ou','800'),
 ('email55@gmail.com','$2a$10$YElZq.c2a1zeBGNeT5MFU.pnLT0uJwAwWAJel/W323Q7CrWVPboiK','60'),
-('email66@gmail.com','$2a$10$NyU/4EvkICWB0ASgYip/HeY6DGVZHK9mLByH2mb/qX1Bs7WxJaJci','110'),
 ('email77@gmail.com','$2a$10$pFsRKt8ExdhGBYTWLbXUXOCV1NyyNlJ1j.z1hu5h67sOen9rbZyye','110'),
 ('email88@gmail.com','$2a$10$M2fJTU4RUIQ6nP7lZ3mf1.MA1XiXbF3XKvdSdPvZzHXRBwJ7.FqXK','110'),
 ('email99@gmail.com','$2a$10$XJ545EeJUUbNaWM0bk.vbuvjxpqVuaR84nxaIjUUApmGaXOutInUa','110');
