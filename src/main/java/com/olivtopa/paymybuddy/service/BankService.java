@@ -20,8 +20,6 @@ public class BankService {
 	@Transactional
 	public void deposit(DepositRequest depositRequest) throws IllegalArgumentException {
 
-		// should use user coming from Spring Secu
-
 		User userByEmail = userService.getUserByEmail(depositRequest.getEmail());
 
 		if (userByEmail != null) {
@@ -37,13 +35,10 @@ public class BankService {
 	@Transactional
 	public void withdraw(WithdrawRequest withdrawRequest) throws NotEnoughMoneyException {
 
-		// should use user coming from Spring Secu
-
 		User userByEmail = userService.getUserByEmail(withdrawRequest.getEmail());
 
 		if (userByEmail != null) {
 
-			//
 			if (userByEmail.getSolde() >= withdrawRequest.getAmount()) {
 				userByEmail.setSolde(userByEmail.getSolde() - withdrawRequest.getAmount());
 				userService.save(userByEmail);
