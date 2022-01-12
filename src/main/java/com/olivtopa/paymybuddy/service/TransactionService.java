@@ -1,5 +1,7 @@
 package com.olivtopa.paymybuddy.service;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,7 +51,8 @@ public class TransactionService {
 			contact1.setEmailContact(contact.getEmail());
 			moneyTransaction.setContact(contact1);
 			moneyTransaction.setAmount(transaction.getAmount());
-			moneyTransaction.setDescription(transaction.getDescription());
+			//moneyTransaction.setCreationDate(new Date());
+			//moneyTransaction.setDescription("test");
 			moneyTransaction.setCommission(transaction.getAmount() * PAY_MY_BUDDY_RATE);
 			moneyTransactionService.create(moneyTransaction);
 
